@@ -1,9 +1,16 @@
 function App() {
   return (
-    <main>
-      <h1>EDDUU</h1>
-      <p>Interactive AI & Technology Learning Laboratory</p>
-    </main>
+    <div className="edduu-app">
+      <main className="edduu-section">
+        <div className="edduu-container">
+          <h1>EDDUU</h1>
+
+          <p>
+            Interactive AI & Technology Learning Laboratory
+          </p>
+        </div>
+      </main>
+    </div>
   )
 }
 
