@@ -1190,3 +1190,322 @@
     transform: translateY(0);
   }
 }
+
+/* =========================================================
+   WHAT IS EDDUU — Step 7.11
+   ========================================================= */
+
+.edduu-what-is {
+  padding: 96px 0;
+  border-top: 1px solid var(--edduu-border);
+}
+
+.edduu-what-is-header {
+  max-width: 720px;
+  margin: 0 auto 52px;
+  text-align: center;
+}
+
+.edduu-what-is-description {
+  max-width: 650px;
+  margin: 22px auto 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.edduu-learning-journey {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.edduu-learning-journey-line {
+  position: absolute;
+  top: 30px;
+  right: calc(12.5% + 10px);
+  left: calc(12.5% + 10px);
+
+  height: 1px;
+
+  background: var(--edduu-border-strong);
+}
+
+.edduu-journey-card {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-lg);
+
+  background: var(--edduu-surface);
+
+  box-shadow: var(--edduu-shadow-sm);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.edduu-journey-card:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--edduu-border-strong);
+
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-journey-card.is-open {
+  border-color: var(--edduu-border-strong);
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-journey-trigger {
+  width: 100%;
+  min-height: 224px;
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.edduu-journey-trigger:focus-visible {
+  outline: 2px solid var(--edduu-primary);
+  outline-offset: -4px;
+}
+
+.edduu-journey-number {
+  width: 36px;
+  height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--edduu-border-strong);
+  border-radius: 999px;
+
+  background: var(--edduu-surface);
+
+  color: var(--edduu-text-muted);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.edduu-journey-title {
+  margin-top: 24px;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.edduu-journey-headline {
+  margin-top: 12px;
+
+  color: var(--edduu-text);
+
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.edduu-journey-supporting {
+  margin-top: 12px;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.edduu-journey-action {
+  margin-top: auto;
+  padding-top: 20px;
+
+  color: var(--edduu-primary);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: transform 180ms ease;
+}
+
+.edduu-journey-card:hover .edduu-journey-action {
+  transform: translateX(3px);
+}
+
+.edduu-journey-card.is-open .edduu-journey-action {
+  transform: none;
+}
+
+.edduu-journey-expanded {
+  padding: 0 28px 28px;
+}
+
+.edduu-journey-divider {
+  height: 1px;
+
+  background: var(--edduu-border);
+}
+
+.edduu-journey-principle {
+  margin: 22px 0 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.edduu-journey-flow {
+  margin-top: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.edduu-journey-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  color: var(--edduu-text);
+
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.edduu-journey-flow-arrow {
+  margin: 7px 0;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 13px;
+  line-height: 1;
+}
+
+.edduu-what-is-principle {
+  margin: 44px 0 0;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+@media (max-width: 1023px) {
+  .edduu-what-is {
+    padding: 80px 0;
+  }
+
+  .edduu-learning-journey {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edduu-learning-journey-line {
+    display: none;
+  }
+
+  .edduu-journey-trigger {
+    min-height: 206px;
+    padding: 26px;
+  }
+
+  .edduu-journey-expanded {
+    padding: 0 26px 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .edduu-what-is {
+    padding: 64px 0;
+  }
+
+  .edduu-what-is-header {
+    margin-bottom: 32px;
+    text-align: left;
+  }
+
+  .edduu-what-is-description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .edduu-learning-journey {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .edduu-journey-card:hover {
+    transform: none;
+    box-shadow: var(--edduu-shadow-sm);
+  }
+
+  .edduu-journey-card.is-open {
+    box-shadow: var(--edduu-shadow-md);
+  }
+
+  .edduu-journey-trigger {
+    min-height: 190px;
+    padding: 22px 20px;
+  }
+
+  .edduu-journey-title {
+    margin-top: 18px;
+  }
+
+  .edduu-journey-headline {
+    font-size: 20px;
+  }
+
+  .edduu-journey-expanded {
+    padding: 0 20px 22px;
+  }
+
+  .edduu-what-is-principle {
+    margin-top: 32px;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edduu-journey-card,
+  .edduu-journey-action {
+    transition: none;
+  }
+
+  .edduu-journey-card:hover,
+  .edduu-journey-card:hover .edduu-journey-action {
+    transform: none;
+  }
+}
