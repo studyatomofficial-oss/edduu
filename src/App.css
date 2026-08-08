@@ -551,3 +551,204 @@
     width: 100%;
   }
 }
+.edduu-projects {
+  padding-top: 88px;
+  padding-bottom: 96px;
+}
+
+.edduu-projects-header {
+  max-width: 760px;
+  margin-bottom: 40px;
+}
+
+.edduu-section-eyebrow {
+  margin: 0 0 14px;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edduu-section-title {
+  margin: 0;
+
+  color: var(--edduu-text);
+
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+
+.edduu-section-description {
+  max-width: 680px;
+  margin: 20px 0 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.edduu-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.edduu-project-card {
+  min-height: 420px;
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-xl);
+
+  background: var(--edduu-surface);
+
+  box-shadow: var(--edduu-shadow-sm);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.edduu-project-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--edduu-border-strong);
+
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-project-number {
+  margin-bottom: 28px;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.edduu-project-title {
+  margin: 0;
+
+  color: var(--edduu-text);
+
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.edduu-project-description {
+  margin: 16px 0 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.edduu-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+.edduu-project-tag {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 30px;
+  padding: 0 10px;
+
+  border: 1px solid var(--edduu-border);
+  border-radius: 999px;
+
+  background: var(--edduu-bg);
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.edduu-project-learning {
+  margin: 22px 0 0;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.edduu-project-cta {
+  margin-top: auto;
+  padding: 18px 0 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--edduu-primary);
+
+  font-size: 14px;
+  font-weight: 800;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: transform 180ms ease;
+}
+
+.edduu-project-card:hover .edduu-project-cta {
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px) {
+  .edduu-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edduu-project-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .edduu-projects {
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+
+  .edduu-projects-header {
+    margin-bottom: 28px;
+  }
+
+  .edduu-section-title {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .edduu-section-description {
+    font-size: 16px;
+  }
+
+  .edduu-project-card {
+    padding: 24px;
+  }
+
+  .edduu-project-title {
+    font-size: 24px;
+  }
+}
