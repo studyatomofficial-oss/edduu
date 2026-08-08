@@ -752,3 +752,441 @@
     font-size: 24px;
   }
 }
+/* =========================================================
+   EDDUU — LEADERSHIP LENS
+   STEP 5G — VISUAL IMPLEMENTATION
+   ========================================================= */
+
+.edduu-leadership {
+  padding: 96px 0;
+}
+
+.edduu-leadership-header {
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.edduu-section-eyebrow {
+  margin: 0 0 16px;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edduu-section-title {
+  margin: 0;
+
+  color: var(--edduu-text);
+
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.edduu-section-description {
+  max-width: 680px;
+  margin: 24px auto 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.edduu-lens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  justify-content: center;
+  gap: 24px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.edduu-lens-card {
+  width: 360px;
+  min-height: 180px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--edduu-border);
+  border-radius: 20px;
+
+  background: var(--edduu-surface);
+
+  box-shadow: var(--edduu-shadow-sm);
+
+  transition:
+    transform 200ms ease-out,
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.edduu-lens-card:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--edduu-border-strong);
+
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-lens-card.is-open {
+  border-color: var(--edduu-border-strong);
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-lens-card-ai.is-open {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+.edduu-lens-trigger {
+  position: relative;
+
+  width: 100%;
+  min-height: 180px;
+
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  font: inherit;
+}
+
+.edduu-lens-trigger:focus-visible {
+  outline: 2px solid var(--edduu-primary);
+  outline-offset: 3px;
+}
+
+.edduu-lens-number {
+  color: var(--edduu-text-muted);
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.edduu-lens-title {
+  margin-top: 14px;
+
+  color: var(--edduu-text);
+
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.edduu-lens-statement {
+  max-width: 290px;
+  margin-top: 12px;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.edduu-lens-arrow {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 18px;
+  font-weight: 500;
+
+  transition:
+    transform 200ms ease-out,
+    color 200ms ease-out;
+}
+
+.edduu-lens-card:hover .edduu-lens-arrow {
+  transform: translateX(3px);
+  color: var(--edduu-text);
+}
+
+.edduu-lens-card.is-open .edduu-lens-arrow {
+  color: var(--edduu-text);
+}
+
+.edduu-lens-card-ai .edduu-lens-arrow {
+  color: var(--edduu-ai);
+}
+
+.edduu-lens-expanded {
+  padding: 0 28px 28px;
+}
+
+.edduu-lens-divider {
+  width: 100%;
+  height: 1px;
+
+  background: var(--edduu-border);
+}
+
+.edduu-lens-principle {
+  margin: 24px 0 0;
+
+  color: var(--edduu-text-secondary);
+
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 400;
+
+  animation: edduu-lens-content-in 220ms ease-out both;
+}
+
+.edduu-lens-flow {
+  margin-top: 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.edduu-lens-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  color: var(--edduu-text);
+
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+
+  animation: edduu-lens-content-in 220ms ease-out both;
+}
+
+.edduu-lens-flow-arrow {
+  margin: 8px 0;
+
+  color: var(--edduu-text-muted);
+
+  font-size: 13px;
+  line-height: 1;
+}
+
+.edduu-leadership-cta {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 48px;
+}
+
+.edduu-leadership-cta .edduu-button {
+  min-height: 48px;
+}
+
+/* ---------------------------------------------------------
+   Tablet
+   --------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .edduu-leadership {
+    padding: 80px 0;
+  }
+
+  .edduu-leadership-header {
+    margin-bottom: 40px;
+  }
+
+  .edduu-section-title {
+    font-size: 40px;
+  }
+
+  .edduu-lens-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    max-width: 720px;
+
+    gap: 20px;
+  }
+
+  .edduu-lens-card {
+    width: auto;
+    min-height: 170px;
+  }
+
+  .edduu-lens-trigger {
+    min-height: 170px;
+
+    padding: 24px;
+  }
+
+  .edduu-lens-arrow {
+    right: 24px;
+    bottom: 23px;
+  }
+
+  .edduu-lens-expanded {
+    padding: 0 24px 24px;
+  }
+
+  .edduu-lens-grid .edduu-lens-card:last-child {
+    grid-column: 1 / -1;
+    width: min(350px, 100%);
+    justify-self: center;
+  }
+}
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .edduu-leadership {
+    padding: 64px 0;
+  }
+
+  .edduu-leadership-header {
+    margin-bottom: 32px;
+
+    text-align: left;
+  }
+
+  .edduu-section-title {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .edduu-section-description {
+    margin-top: 20px;
+
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .edduu-lens-grid {
+    grid-template-columns: 1fr;
+
+    width: 100%;
+    max-width: none;
+
+    gap: 12px;
+  }
+
+  .edduu-lens-card {
+    width: 100%;
+    min-height: 112px;
+
+    border-radius: 16px;
+  }
+
+  .edduu-lens-card:hover {
+    transform: none;
+
+    box-shadow: var(--edduu-shadow-sm);
+  }
+
+  .edduu-lens-trigger {
+    min-height: 112px;
+
+    padding: 20px;
+  }
+
+  .edduu-lens-title {
+    margin-top: 10px;
+
+    font-size: 18px;
+  }
+
+  .edduu-lens-statement {
+    max-width: calc(100% - 40px);
+
+    margin-top: 8px;
+
+    font-size: 15px;
+  }
+
+  .edduu-lens-arrow {
+    right: 20px;
+    bottom: 20px;
+
+    font-size: 18px;
+  }
+
+  .edduu-lens-card:hover .edduu-lens-arrow {
+    transform: none;
+  }
+
+  .edduu-lens-expanded {
+    padding: 0 20px 20px;
+  }
+
+  .edduu-lens-principle {
+    margin-top: 20px;
+
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .edduu-lens-flow {
+    margin-top: 24px;
+  }
+
+  .edduu-leadership-cta {
+    justify-content: flex-start;
+
+    margin-top: 32px;
+  }
+
+  .edduu-leadership-cta .edduu-button {
+    width: auto;
+  }
+}
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .edduu-lens-card,
+  .edduu-lens-arrow,
+  .edduu-lens-principle,
+  .edduu-lens-flow-item {
+    transition: none;
+    animation: none;
+  }
+
+  .edduu-lens-card:hover {
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Content reveal
+   --------------------------------------------------------- */
+
+@keyframes edduu-lens-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
