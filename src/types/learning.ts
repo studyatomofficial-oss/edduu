@@ -30,6 +30,7 @@ export type InteractionType =
   | 'monitor'
   | 'decision'
   | 'interview'
+  | 'pipeline'
 
 export type LearningObjective = {
   statement: string

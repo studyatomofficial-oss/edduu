@@ -5,6 +5,7 @@ import type {
 
 import { ragSeeStage } from './stages/see'
 import { ragUnderstandStage } from './stages/understand'
+import { ragBuildStage } from './stages/build'
 
 export const ragTechnology: TechnologyDefinition = {
   id: 'rag',
@@ -29,5 +30,6 @@ export const ragExperience: ExperienceDefinition = {
   stages: [
   ragSeeStage,
   ragUnderstandStage,
+  ragBuildStage,
 ],
 }
