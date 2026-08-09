@@ -66,6 +66,12 @@ export type StageContent = {
   description?: string
   explanation?: string
   takeaway?: string
+
+  failureScenario?: {
+    title: string
+    description: string
+    expectedDiagnosis: string
+  }
 }
 
 export type StageDefinition = {
