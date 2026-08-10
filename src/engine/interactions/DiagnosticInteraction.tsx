@@ -35,12 +35,14 @@ function DiagnosticInteraction({
   }
 
   return (
-    <div className="edduu-diagnostic-interaction">
-      <p>
-        Identify the layer that is most likely causing
-        the failure.
-      </p>
-
+    <div
+      className={[
+        'edduu-diagnostic-interaction',
+        completed ? 'is-completed' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div className="edduu-diagnostic-options">
         {options.map((option) => {
           const isSelected =
@@ -58,6 +60,12 @@ function DiagnosticInteraction({
             <button
               key={option.id}
               type="button"
+              className={[
+                isCorrect ? 'is-correct' : '',
+                isIncorrect ? 'is-incorrect' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
               onClick={() => handleSelect(option.id)}
               disabled={completed}
             >
@@ -73,7 +81,7 @@ function DiagnosticInteraction({
       {completed && (
         <div className="edduu-diagnostic-success">
           <strong>Diagnosis correct ✓</strong>
-          <p>
+          <p className="edduu-diagnostic-success-message">
             You identified the failing layer correctly.
           </p>
         </div>
@@ -82,7 +90,7 @@ function DiagnosticInteraction({
       {selectedOption &&
         selectedOption !== correctOptionId &&
         !completed && (
-          <p>
+          <p className="edduu-diagnostic-feedback">
             Not quite. Trace the RAG pipeline again and
             inspect where the evidence becomes irrelevant.
           </p>

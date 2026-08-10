@@ -19,11 +19,19 @@ function ClickInteraction({
   }
 
   return (
-    <div className="edduu-interaction-click">
-      <p>{instruction}</p>
+    <div
+      className={[
+        'edduu-interaction-click',
+        completed ? 'is-completed' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <p className="edduu-click-instruction">{instruction}</p>
 
       <button
         type="button"
+        className="edduu-interaction-button"
         onClick={handleClick}
         disabled={completed}
       >

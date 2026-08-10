@@ -43,10 +43,30 @@ function InteractionRenderer({
   }
 
   return (
-    <InteractionComponent
-      {...interaction.config}
-      onComplete={onComplete}
-    />
+    <section
+      className={`edduu-interaction edduu-interaction-${interaction.type}`}
+    >
+      {(interaction.title || interaction.instruction) && (
+        <header className="edduu-interaction-header">
+          {interaction.title && (
+            <h3 className="edduu-interaction-title">
+              {interaction.title}
+            </h3>
+          )}
+
+          {interaction.instruction && (
+            <p className="edduu-interaction-instruction">
+              {interaction.instruction}
+            </p>
+          )}
+        </header>
+      )}
+
+      <InteractionComponent
+        {...interaction.config}
+        onComplete={onComplete}
+      />
+    </section>
   )
 }
 

@@ -47,6 +47,16 @@ function StageRenderer({
         <p>{stage.objective.statement}</p>
       </div>
 
+      {stage.content.failureScenario && (
+        <section className="edduu-stage-failure-scenario">
+          <p className="edduu-stage-failure-label">
+            Incident report
+          </p>
+
+          <p>{stage.content.failureScenario.description}</p>
+        </section>
+      )}
+
       {stage.interactions.length > 0 && (
         <div className="edduu-stage-interactions">
           {stage.interactions.map((interaction) => (

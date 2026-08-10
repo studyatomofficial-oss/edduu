@@ -44,9 +44,9 @@ export const ragBreakStage: StageDefinition = {
   {
     id: 'rag-break-diagnosis',
     type: 'diagnostic',
-    title: 'Diagnose the retrieval failure',
+    title: 'Diagnose the failure',
     instruction:
-      'Identify the layer that is most likely causing the failure.',
+      'Based on the evidence above, where should you investigate first?',
     config: {
       options: [
         {

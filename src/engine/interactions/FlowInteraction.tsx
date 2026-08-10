@@ -22,7 +22,14 @@ function FlowInteraction({
   }
 
   return (
-    <div className="edduu-interaction-flow">
+    <div
+      className={[
+        'edduu-interaction-flow',
+        completed ? 'is-completed' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div className="edduu-flow-steps">
         {steps.map((step, index) => (
           <div
@@ -48,6 +55,7 @@ function FlowInteraction({
       {steps.length > 0 && (
         <button
           type="button"
+          className="edduu-interaction-button"
           onClick={handleComplete}
           disabled={completed}
         >

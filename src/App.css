@@ -1542,3 +1542,598 @@
     transform: none;
   }
 }
+
+/* =========================================================
+   RAG LEARNING LAB
+   ========================================================= */
+
+.edduu-learning-lab {
+  padding: 104px 0;
+  border-top: 1px solid var(--edduu-border);
+}
+
+.edduu-learning-lab-header {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.edduu-learning-lab .edduu-section-eyebrow,
+.edduu-stage .edduu-section-eyebrow {
+  margin: 0 0 14px;
+  color: var(--edduu-text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.edduu-learning-lab .edduu-section-title {
+  margin: 0;
+  color: var(--edduu-text);
+  font-size: clamp(40px, 5vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+}
+
+.edduu-learning-lab-header .edduu-section-description {
+  max-width: 740px;
+  margin: 22px auto 0;
+  color: var(--edduu-text-secondary);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.edduu-stage-navigator {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto 48px;
+}
+
+.edduu-stage-navigator::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 1px;
+  background: var(--edduu-border-strong);
+}
+
+.edduu-stage-nav-item {
+  position: relative;
+  z-index: 1;
+  min-height: 78px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--edduu-text-muted);
+  font: inherit;
+  text-align: left;
+  transition: color 180ms ease;
+}
+
+.edduu-stage-nav-number {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--edduu-border-strong);
+  border-radius: 999px;
+  background: var(--edduu-surface);
+  color: var(--edduu-text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transition: color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.edduu-stage-nav-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edduu-stage-nav-item:not(:disabled):hover {
+  color: var(--edduu-text);
+}
+
+.edduu-stage-nav-item:not(:disabled):hover .edduu-stage-nav-number {
+  border-color: var(--edduu-primary);
+}
+
+.edduu-stage-nav-item.is-current {
+  color: var(--edduu-primary);
+}
+
+.edduu-stage-nav-item.is-current .edduu-stage-nav-number {
+  border-color: var(--edduu-primary);
+  color: var(--edduu-primary);
+  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.08);
+}
+
+.edduu-stage-nav-item.is-completed {
+  color: var(--edduu-text-secondary);
+}
+
+.edduu-stage-nav-item.is-completed .edduu-stage-nav-number {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: rgba(22, 163, 74, 0.06);
+  color: var(--edduu-success);
+}
+
+.edduu-stage-nav-item.is-locked {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.edduu-stage-nav-item:focus-visible,
+.edduu-interaction button:focus-visible {
+  outline: 2px solid var(--edduu-primary);
+  outline-offset: 3px;
+}
+
+.edduu-stage {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 52px;
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-xl);
+  background: var(--edduu-surface);
+  box-shadow: var(--edduu-shadow-md);
+}
+
+.edduu-stage .edduu-section-title {
+  max-width: 760px;
+  margin: 0;
+  color: var(--edduu-text);
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+
+.edduu-stage > .edduu-section-description {
+  max-width: 740px;
+  margin: 18px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.edduu-stage-explanation {
+  max-width: 760px;
+  margin: 28px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.edduu-stage-takeaway,
+.edduu-stage-objective {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border-left: 3px solid var(--edduu-primary);
+  background: var(--edduu-surface-soft);
+}
+
+.edduu-stage-takeaway strong,
+.edduu-stage-objective strong {
+  color: var(--edduu-text);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edduu-stage-takeaway p,
+.edduu-stage-objective p {
+  margin: 8px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.edduu-stage-objective {
+  border-left-color: var(--edduu-border-strong);
+  background: transparent;
+}
+
+.edduu-stage-failure-scenario {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  border-radius: var(--edduu-radius-lg);
+  background: rgba(220, 38, 38, 0.035);
+}
+
+.edduu-stage-failure-label {
+  margin: 0;
+  color: var(--edduu-error);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.edduu-stage-failure-scenario h3 {
+  margin: 12px 0 0;
+  color: var(--edduu-text);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.edduu-stage-failure-scenario > p:last-child {
+  margin: 10px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.edduu-stage-interactions {
+  margin-top: 36px;
+}
+
+.edduu-interaction {
+  padding: 28px;
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-lg);
+  background: var(--edduu-surface);
+}
+
+.edduu-interaction-header {
+  margin-bottom: 24px;
+}
+
+.edduu-interaction-title {
+  margin: 0;
+  color: var(--edduu-text);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.edduu-interaction-instruction {
+  margin: 8px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.edduu-interaction-click,
+.edduu-interaction-flow,
+.edduu-pipeline-builder,
+.edduu-diagnostic-interaction {
+  padding: 24px;
+  border-radius: var(--edduu-radius-md);
+  background: var(--edduu-surface-soft);
+}
+
+.edduu-click-instruction,
+.edduu-pipeline-instruction,
+.edduu-diagnostic-instruction {
+  margin: 0;
+  color: var(--edduu-text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.edduu-interaction-button,
+.edduu-interaction-flow > button,
+.edduu-pipeline-reset {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--edduu-primary);
+  border-radius: var(--edduu-radius-md);
+  background: var(--edduu-primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 750;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.edduu-interaction-button {
+  margin-top: 22px;
+}
+
+.edduu-interaction-button:hover:not(:disabled),
+.edduu-interaction-flow > button:hover:not(:disabled) {
+  border-color: var(--edduu-primary-dark);
+  background: var(--edduu-primary-dark);
+  transform: translateY(-1px);
+}
+
+.edduu-interaction button:disabled {
+  cursor: default;
+}
+
+.edduu-interaction-click.is-completed .edduu-interaction-button,
+.edduu-interaction-flow.is-completed > button {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: var(--edduu-success);
+}
+
+.edduu-flow-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edduu-flow-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edduu-flow-step-card {
+  min-width: 122px;
+  min-height: 68px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--edduu-border-strong);
+  border-radius: var(--edduu-radius-md);
+  background: var(--edduu-surface);
+  color: var(--edduu-text);
+  font-size: 14px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.edduu-flow-arrow {
+  color: var(--edduu-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.edduu-interaction-flow > button {
+  display: block;
+  margin: 28px auto 0;
+}
+
+.edduu-pipeline-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.edduu-pipeline-options button,
+.edduu-diagnostic-options button {
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid var(--edduu-border-strong);
+  border-radius: var(--edduu-radius-md);
+  background: var(--edduu-surface);
+  color: var(--edduu-text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.edduu-pipeline-options button:hover:not(:disabled),
+.edduu-diagnostic-options button:hover:not(:disabled) {
+  border-color: var(--edduu-primary);
+  color: var(--edduu-text);
+  box-shadow: var(--edduu-shadow-sm);
+}
+
+.edduu-pipeline-options button.is-selected {
+  border-color: var(--edduu-primary);
+  background: rgba(37, 99, 235, 0.07);
+  color: var(--edduu-primary);
+}
+
+.edduu-pipeline-options button:disabled:not(.is-selected) {
+  opacity: 0.6;
+}
+
+.edduu-pipeline-progress {
+  margin: 18px 0 0;
+  color: var(--edduu-text-secondary);
+  font-size: 14px;
+}
+
+.edduu-pipeline-reset {
+  margin-top: 16px;
+  border-color: var(--edduu-border-strong);
+  background: var(--edduu-surface);
+  color: var(--edduu-text-secondary);
+}
+
+.edduu-pipeline-reset:hover {
+  border-color: var(--edduu-text-muted);
+  color: var(--edduu-text);
+}
+
+.edduu-pipeline-success,
+.edduu-diagnostic-success {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--edduu-success);
+  background: rgba(22, 163, 74, 0.06);
+  color: var(--edduu-text-secondary);
+}
+
+.edduu-pipeline-success strong,
+.edduu-diagnostic-success strong {
+  color: var(--edduu-success);
+  font-size: 14px;
+}
+
+.edduu-pipeline-success p,
+.edduu-diagnostic-success p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.edduu-diagnostic-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.edduu-diagnostic-options button.is-incorrect {
+  border-color: rgba(220, 38, 38, 0.45);
+  background: rgba(220, 38, 38, 0.07);
+  color: var(--edduu-error);
+}
+
+.edduu-diagnostic-options button.is-correct {
+  border-color: rgba(22, 163, 74, 0.45);
+  background: rgba(22, 163, 74, 0.07);
+  color: var(--edduu-success);
+}
+
+.edduu-diagnostic-feedback {
+  margin: 18px 0 0;
+  color: var(--edduu-error);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .edduu-learning-lab {
+    padding: 80px 0;
+  }
+
+  .edduu-stage {
+    padding: 40px;
+  }
+
+  .edduu-flow-steps {
+    flex-wrap: wrap;
+  }
+
+  .edduu-pipeline-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .edduu-learning-lab {
+    padding: 64px 0;
+  }
+
+  .edduu-learning-lab-header {
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .edduu-learning-lab .edduu-section-title {
+    font-size: 36px;
+  }
+
+  .edduu-learning-lab-header .edduu-section-description,
+  .edduu-stage > .edduu-section-description {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .edduu-stage-navigator {
+    display: flex;
+    gap: 4px;
+    margin-right: -20px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .edduu-stage-navigator::before {
+    display: none;
+  }
+
+  .edduu-stage-nav-item {
+    min-width: 138px;
+    min-height: 68px;
+    padding: 0 10px;
+  }
+
+  .edduu-stage-nav-number {
+    width: 40px;
+    height: 40px;
+  }
+
+  .edduu-stage {
+    padding: 28px 20px;
+    border-radius: var(--edduu-radius-lg);
+  }
+
+  .edduu-stage .edduu-section-title {
+    font-size: 30px;
+  }
+
+  .edduu-stage-explanation {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+
+  .edduu-stage-takeaway,
+  .edduu-stage-objective,
+  .edduu-stage-failure-scenario,
+  .edduu-interaction {
+    padding: 20px;
+  }
+
+  .edduu-stage-interactions {
+    margin-top: 28px;
+  }
+
+  .edduu-interaction-click,
+  .edduu-interaction-flow,
+  .edduu-pipeline-builder,
+  .edduu-diagnostic-interaction {
+    padding: 18px;
+  }
+
+  .edduu-flow-steps,
+  .edduu-flow-step {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .edduu-flow-step-card {
+    width: 100%;
+  }
+
+  .edduu-flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .edduu-pipeline-options,
+  .edduu-diagnostic-options {
+    grid-template-columns: 1fr;
+  }
+
+  .edduu-interaction-button,
+  .edduu-interaction-flow > button,
+  .edduu-pipeline-reset {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edduu-stage-nav-item,
+  .edduu-stage-nav-number,
+  .edduu-interaction button,
+  .edduu-pipeline-options button,
+  .edduu-diagnostic-options button {
+    transition: none;
+  }
+}

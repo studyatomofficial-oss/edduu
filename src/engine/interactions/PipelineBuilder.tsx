@@ -45,8 +45,15 @@ function PipelineBuilder({
   }
 
   return (
-    <div className="edduu-pipeline-builder">
-      <p>
+    <div
+      className={[
+        'edduu-pipeline-builder',
+        completed ? 'is-completed' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <p className="edduu-pipeline-instruction">
         Select the RAG components in the correct
         execution order.
       </p>
@@ -62,6 +69,7 @@ function PipelineBuilder({
             <button
               key={step.id}
               type="button"
+              className={isSelected ? 'is-selected' : ''}
               onClick={() => handleStepClick(step.id)}
               disabled={isSelected || completed}
             >
@@ -83,7 +91,7 @@ function PipelineBuilder({
       )}
 
       {selectedSteps.length > 0 && !completed && (
-        <p>
+        <p className="edduu-pipeline-progress">
           Components selected:{' '}
           {selectedSteps.length} / {steps.length}
         </p>
@@ -92,6 +100,7 @@ function PipelineBuilder({
       {selectedSteps.length > 0 && !completed && (
         <button
           type="button"
+          className="edduu-pipeline-reset"
           onClick={handleReset}
         >
           Reset pipeline
