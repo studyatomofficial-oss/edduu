@@ -24,6 +24,10 @@ const simulationSteps: SimulationStep[] = [
   },
 ]
 
+const learningLoop = [
+  'See', 'Interact', 'Build', 'Break', 'Fix', 'Production',
+]
+
 function ExperienceDemo() {
   const [currentStep, setCurrentStep] = useState(-1)
   const [isRunning, setIsRunning] = useState(false)
@@ -55,27 +59,30 @@ function ExperienceDemo() {
       <div className="edduu-container">
         <div className="edduu-experience-heading">
           <p className="edduu-section-eyebrow">
-            EXPERIENCE TECHNOLOGY
+            HOW EDDUU WORKS
           </p>
 
           <h2 className="edduu-section-title">
-            Don't just read how technology works. Experience it.
+            Learn through systems, not slides.
           </h2>
 
           <p className="edduu-section-description">
-            Start with a simple AI workflow. Follow the request as it
-            moves through the system, and see what each component
-            actually does.
+            See a compact technology flow and feel how a real system
+            progresses from request to result.
           </p>
+
+          <div className="edduu-learning-loop" aria-label="EDDUU learning loop">
+            {learningLoop.map((step) => <span key={step}>{step}</span>)}
+          </div>
         </div>
 
         <div className="edduu-experience-demo">
           <div className="edduu-experience-status">
             {currentStep === -1
-              ? 'Ready to run'
+              ? 'Ready to run — start the compact system flow.'
               : isRunning
                 ? simulationSteps[currentStep].description
-                : 'Simulation complete'}
+                : 'Simulation complete — you saw how the system moved.'}
           </div>
 
           <div className="edduu-experience-flow">

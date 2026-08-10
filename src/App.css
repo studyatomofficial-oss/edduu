@@ -251,7 +251,22 @@
   width: 1px;
   height: 34px;
 
+  position: relative;
   background: var(--edduu-border-strong);
+}
+
+.edduu-system-line::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.38);
+  opacity: 0.15;
+  animation: edduu-signal-dot 2.6s ease-in-out infinite;
 }
 
 .edduu-system-branches {
@@ -1469,6 +1484,10 @@
   .edduu-journey-expanded {
     padding: 0 26px 26px;
   }
+
+  .edduu-technology-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2137,3 +2156,185 @@
     transition: none;
   }
 }
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.edduu-final-cta {
+  padding: 72px 0 80px;
+  border-top: 1px solid var(--edduu-border);
+}
+
+.edduu-final-cta-content {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.edduu-final-cta-content .edduu-section-eyebrow {
+  margin: 0 0 14px;
+  color: var(--edduu-text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.edduu-final-cta-content h2 {
+  margin: 0;
+  color: var(--edduu-text);
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.edduu-final-cta-content > p {
+  margin: 14px 0 24px;
+  color: var(--edduu-text-secondary);
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .edduu-final-cta {
+    padding: 56px 0 64px;
+  }
+
+  .edduu-final-cta-content {
+    text-align: left;
+  }
+
+  .edduu-final-cta-content .edduu-button {
+    width: 100%;
+  }
+}
+
+/* Homepage composition — compact front door */
+.edduu-hero { padding: 72px 0 64px; }
+.edduu-hero-grid { gap: 56px; }
+.edduu-what-is { padding: 46px 0; }
+.edduu-what-is-compact,
+.edduu-universe-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px; align-items: center; }
+.edduu-what-is .edduu-section-title { font-size: clamp(30px, 3.4vw, 42px); }
+.edduu-what-is-summary > p { margin: 0; color: var(--edduu-text-secondary); font-size: 16px; line-height: 1.7; }
+.edduu-method-strip,
+.edduu-learning-loop,
+.edduu-technology-families { display: flex; flex-wrap: wrap; gap: 8px; }
+.edduu-method-strip { margin-top: 18px; }
+.edduu-method-strip span,
+.edduu-learning-loop span,
+.edduu-technology-families span { padding: 8px 10px; border: 1px solid var(--edduu-border); border-radius: 999px; background: var(--edduu-surface); color: var(--edduu-text-secondary); font-size: 12px; font-weight: 700; }
+.edduu-experience { padding: 48px 0; }
+.edduu-experience-heading { max-width: 720px; margin-bottom: 20px; }
+.edduu-learning-loop { justify-content: center; margin-top: 16px; }
+.edduu-experience-demo { padding: 22px; }
+.edduu-experience-status { margin-bottom: 18px; }
+
+.edduu-experience-step {
+  min-width: 88px;
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.edduu-experience-connector {
+  width: 48px;
+}
+
+.edduu-technology-universe { padding: 48px 0; border-top: 1px solid var(--edduu-border); }
+.edduu-universe-intro h2 { margin: 0; color: var(--edduu-text); font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.04em; }
+.edduu-universe-intro > p { margin: 16px 0 18px; color: var(--edduu-text-secondary); font-size: 16px; line-height: 1.65; }
+
+.edduu-technology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 26px 0 0;
+}
+
+.edduu-technology-group {
+  padding: 24px;
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-xl);
+  background: var(--edduu-surface);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.edduu-technology-group:hover {
+  transform: translateY(-2px);
+  border-color: var(--edduu-border-strong);
+  box-shadow: var(--edduu-shadow-sm);
+}
+
+.edduu-technology-group-title {
+  margin: 0 0 16px;
+  color: var(--edduu-text);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.edduu-technology-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edduu-technology-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border: 1px solid var(--edduu-border);
+  border-radius: 999px;
+  background: var(--edduu-surface-soft);
+  color: var(--edduu-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.edduu-technology-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+  padding: 18px 22px;
+  border: 1px solid var(--edduu-border);
+  border-radius: var(--edduu-radius-xl);
+  background: var(--edduu-surface-soft);
+}
+
+.edduu-technology-footer p {
+  margin: 0;
+  color: var(--edduu-text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.edduu-technology-families { align-content: center; padding: 24px; border: 1px solid var(--edduu-border); border-radius: var(--edduu-radius-lg); background: var(--edduu-surface-soft); }
+.edduu-system-node.is-active { animation: edduu-system-activate 280ms ease-out; }
+.edduu-system-detail { animation: edduu-system-detail-in 180ms ease-out both; }
+@keyframes edduu-system-activate { from { transform: scale(0.94); } to { transform: translateY(-2px); } }
+
+@keyframes edduu-signal-dot {
+  0%, 100% {
+    opacity: 0.12;
+    transform: translate(-50%, 0);
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.2;
+    transform: translate(-50%, calc(100% - 8px));
+  }
+}
+
+@keyframes edduu-system-detail-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 900px) { .edduu-what-is-compact, .edduu-universe-layout { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 600px) { .edduu-hero { padding: 52px 0 48px; } .edduu-what-is, .edduu-experience, .edduu-technology-universe { padding: 44px 0; } .edduu-what-is-compact { text-align: left; } .edduu-learning-loop { justify-content: flex-start; } .edduu-experience-demo { padding: 24px 20px; } .edduu-technology-grid { gap: 14px; } .edduu-technology-footer { flex-direction: column; align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .edduu-system-node.is-active, .edduu-system-detail, .edduu-system-line::before { animation: none; } }
