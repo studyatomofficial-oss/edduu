@@ -13,6 +13,14 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
     .map((technologyId) => technologyById.get(technologyId))
     .filter((technology): technology is NonNullable<typeof technology> => Boolean(technology))
 
+  const getTechnologyWhyUsed = (technology: NonNullable<typeof technologies[number]>, roles: string[]) => {
+    if (roles.length > 0) {
+      return `This supports the ${roles.join(', ')} layer of the system.`
+    }
+
+    return `This is a core part of the ${technology.name.toLowerCase()} architecture.`
+  }
+
   return (
     <section className="edduu-project-detail">
       <div className="edduu-container">
@@ -36,10 +44,18 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
                   .filter((component) => component.techId === technology.id)
                   .map((component) => component.label)
 
+                const techName = technology.experienceId ? (
+                  <a href={`#lab/${technology.slug}`} className="edduu-project-tech-name edduu-project-link">
+                    {technology.name}
+                  </a>
+                ) : (
+                  <span className="edduu-project-tech-name">{technology.name}</span>
+                )
+
                 const content = (
                   <li key={technology.id} className="edduu-project-tech-item">
                     <div className="edduu-project-tech-header">
-                      <span className="edduu-project-tech-name">{technology.name}</span>
+                      {techName}
                       {technology.experienceId ? (
                         <a href={`#lab/${technology.slug}`} className="edduu-project-link">
                           Learn this →
@@ -50,6 +66,9 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
                     </div>
                     <p className="edduu-project-tech-role">
                       {roles.length > 0 ? roles.join(' · ') : 'Core system component'}
+                    </p>
+                    <p className="edduu-project-tech-reason">
+                      {getTechnologyWhyUsed(technology, roles)}
                     </p>
                   </li>
                 )
@@ -93,18 +112,30 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
           <article className="edduu-project-detail-panel">
             <h2>Failure scenarios</h2>
             <ul className="edduu-project-list">
-              {project.failureScenarios.map((scenario) => (
-                <li key={scenario.title}>
-                  <strong>{scenario.title}</strong>
-                  <p>{scenario.description}</p>
-                  {scenario.relatedTechId ? (
-                    <small>
-                      Related technology:{' '}
-                      {technologyById.get(scenario.relatedTechId)?.name ?? scenario.relatedTechId}
-                    </small>
-                  ) : null}
-                </li>
-              ))}
+              {project.failureScenarios.map((scenario) => {
+                const relatedTechnology = scenario.relatedTechId
+                  ? technologyById.get(scenario.relatedTechId)
+                  : null
+
+                return (
+                  <li key={scenario.title}>
+                    <strong>{scenario.title}</strong>
+                    <p>
+                      <strong>Consequence:</strong> {scenario.description}
+                    </p>
+                    <p>
+                      <strong>Mitigation:</strong>{' '}
+                      {relatedTechnology?.experienceId ? (
+                        <a href={`#lab/${relatedTechnology.slug}`} className="edduu-project-link">
+                          Review {relatedTechnology.name}
+                        </a>
+                      ) : (
+                        'Review the system safeguards and operational checks around this dependency.'
+                      )}
+                    </p>
+                  </li>
+                )
+              })}
             </ul>
           </article>
         ) : null}
