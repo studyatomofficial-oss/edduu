@@ -8,33 +8,41 @@
     "Segoe UI",
     sans-serif;
 
-  color: #171717;
-  background: #fafafa;
+  color: #17212B;
+  background: #FAFAF7;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --edduu-bg: #fafafa;
-  --edduu-surface: #ffffff;
-  --edduu-surface-soft: #f5f7fa;
+  --edduu-bg: #FAFAF7;
+  --edduu-surface: #FFFFFF;
+  --edduu-surface-soft: #F5F6F3;
 
-  --edduu-text: #171717;
-  --edduu-text-secondary: #5f6368;
-  --edduu-text-muted: #8a8f98;
+  --edduu-text: #17212B;
+  --edduu-text-secondary: #59636E;
+  --edduu-text-muted: #7A838D;
 
-  --edduu-border: #e5e7eb;
-  --edduu-border-strong: #d1d5db;
+  --edduu-border: #E5E7EB;
+  --edduu-border-strong: #D4D8DE;
 
-  --edduu-primary: #2563eb;
-  --edduu-primary-dark: #1d4ed8;
+  --edduu-navy: #16324F;
+  --edduu-emerald: #087F5B;
+  --edduu-teal: #0F766E;
+  --edduu-purple: #6D28D9;
+  --edduu-coral: #E76F51;
+  --edduu-gold: #D4A72C;
+  --edduu-sage: #8FAF9A;
+  --edduu-rose: #C9828A;
+  --edduu-terracotta: #C65D3A;
 
-  --edduu-ai: #7c3aed;
-
-  --edduu-success: #16a34a;
-  --edduu-warning: #d97706;
-  --edduu-error: #dc2626;
+  --edduu-primary: var(--edduu-navy);
+  --edduu-primary-dark: #122C42;
+  --edduu-ai: var(--edduu-purple);
+  --edduu-success: var(--edduu-emerald);
+  --edduu-warning: var(--edduu-gold);
+  --edduu-error: var(--edduu-coral);
 
   --edduu-radius-sm: 8px;
   --edduu-radius-md: 12px;

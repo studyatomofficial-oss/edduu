@@ -1,25 +1,32 @@
-const technologyGroups = [
-  {
-    title: 'AI / Intelligence',
-    items: ['AI', 'GenAI', 'LLMs', 'RAG', 'Agents', 'MCP'],
-  },
-  {
-    title: 'Application engineering',
-    items: ['Full Stack', 'Python', 'FastAPI', 'REST APIs'],
-  },
-  {
-    title: 'Data',
-    items: ['Data', 'PostgreSQL', 'Redis'],
-  },
-  {
-    title: 'Infrastructure',
-    items: ['Cloud', 'Docker', 'Kubernetes'],
-  },
-  {
-    title: 'Systems / execution',
-    items: ['Systems', 'Production', 'GitHub Actions', 'Loop Engineering'],
-  },
-]
+import { modules } from '../data/modules'
+import {
+  homepageTechnologySlugs,
+  technologies,
+} from '../data/technologies'
+
+const technologyGroups = modules
+  .map((module) => {
+    const items = homepageTechnologySlugs
+      .map((slug) => technologies.find((technology) => technology.slug === slug))
+      .filter((technology): technology is (typeof technologies)[number] => {
+        if (!technology) {
+          return false
+        }
+
+        return technology.moduleId === module.id
+      })
+      .map((technology) => ({
+        label: technology.shortName ?? technology.name,
+        slug: technology.slug,
+        experienceId: technology.experienceId,
+      }))
+
+    return {
+      title: module.name,
+      items,
+    }
+  })
+  .filter((group) => group.items.length > 0)
 
 function TechnologyUniverse() {
   return (
@@ -46,11 +53,27 @@ function TechnologyUniverse() {
               </h3>
 
               <div className="edduu-technology-pills">
-                {group.items.map((item) => (
-                  <span key={item} className="edduu-technology-pill">
-                    {item}
-                  </span>
-                ))}
+                {group.items.map((item) => {
+                  const content = (
+                    <span className="edduu-technology-pill">
+                      {item.label}
+                    </span>
+                  )
+
+                  if (!item.experienceId) {
+                    return <span key={item.slug}>{content}</span>
+                  }
+
+                  return (
+                    <a
+                      key={item.slug}
+                      href={`#lab/${item.slug}`}
+                      className="edduu-technology-pill edduu-technology-pill-link"
+                    >
+                      {item.label}
+                    </a>
+                  )
+                })}
               </div>
             </article>
           ))}

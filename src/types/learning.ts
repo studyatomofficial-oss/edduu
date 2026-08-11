@@ -94,7 +94,7 @@ export type TechnologyDefinition = {
   category: string
   description: string
   difficulty: Difficulty
-  experienceId: string
+  experienceId?: string
 }
 
 export type ExperienceDefinition = {
