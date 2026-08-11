@@ -4,10 +4,38 @@ import {
   technologies,
 } from '../data/technologies'
 
+const legacyHomepageSlugMap: Record<string, string> = {
+  genai: 'Generative AI',
+  llms: 'Large Language Models',
+  rag: 'Retrieval-Augmented Generation',
+  agents: 'AI Agents',
+  mcp: 'Model Context Protocol',
+  'full-stack': 'Full Stack',
+  'rest-apis': 'REST APIs',
+  'github-actions': 'GitHub Actions',
+  'loop-engineering': 'Loop Engineering',
+}
+
+function resolveHomepageTechnology(slug: string) {
+  const exactMatch = technologies.find((technology) => technology.slug === slug)
+
+  if (exactMatch) {
+    return exactMatch
+  }
+
+  const fallbackName = legacyHomepageSlugMap[slug]
+
+  if (fallbackName) {
+    return technologies.find((technology) => technology.name === fallbackName)
+  }
+
+  return undefined
+}
+
 const technologyGroups = modules
   .map((module) => {
     const items = homepageTechnologySlugs
-      .map((slug) => technologies.find((technology) => technology.slug === slug))
+      .map((slug) => resolveHomepageTechnology(slug))
       .filter((technology): technology is (typeof technologies)[number] => {
         if (!technology) {
           return false
