@@ -105,3 +105,38 @@ export type ExperienceDefinition = {
   objective: string
   stages: StageDefinition[]
 }
+
+export type ProjectDefinition = {
+  id: string
+  slug: string
+  title: string
+  moduleId: string
+  summary: string
+  purpose: string
+
+  technologyIds: string[]
+
+  architecture: {
+    components: {
+      id: string
+      label: string
+      techId?: string
+    }[]
+
+    flow: {
+      from: string
+      to: string
+      label?: string
+    }[]
+  }
+
+  failureScenarios?: {
+    title: string
+    description: string
+    relatedTechId?: string
+  }[]
+
+  productionConcerns?: string[]
+
+  difficulty: Difficulty
+}

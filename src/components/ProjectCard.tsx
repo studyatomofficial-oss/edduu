@@ -4,6 +4,7 @@ type ProjectCardProps = {
   description: string
   tags: string[]
   learningLine: string
+  href: string
 }
 
 function ProjectCard({
@@ -12,6 +13,7 @@ function ProjectCard({
   description,
   tags,
   learningLine,
+  href,
 }: ProjectCardProps) {
   return (
     <article className="edduu-project-card">
@@ -25,25 +27,17 @@ function ProjectCard({
 
       <div className="edduu-project-tags">
         {tags.map((tag) => (
-          <span
-            className="edduu-project-tag"
-            key={tag}
-          >
+          <span className="edduu-project-tag" key={tag}>
             {tag}
           </span>
         ))}
       </div>
 
-      <p className="edduu-project-learning">
-        {learningLine}
-      </p>
+      <p className="edduu-project-learning">{learningLine}</p>
 
-      <button
-        type="button"
-        className="edduu-project-cta"
-      >
+      <a href={href} className="edduu-project-cta">
         Explore the System →
-      </button>
+      </a>
     </article>
   )
 }

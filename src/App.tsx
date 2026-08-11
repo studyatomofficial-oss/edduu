@@ -5,7 +5,10 @@ import Hero from './components/Hero'
 import WhatIsEDDUU from './components/WhatIsEDDUU'
 import ExperienceDemo from './components/ExperienceDemo'
 import TechnologyUniverse from './components/TechnologyUniverse'
+import ProjectsSection from './components/ProjectsSection'
+import ProjectDetailShell from './components/ProjectDetailShell'
 import RAGLab from './pages/RAGLab'
+import { getProjectBySlug } from './data/projects'
 import { getTechnologyBySlug } from './data/technologies'
 import { ragExperience } from './experiences/rag/rag'
 
@@ -18,6 +21,7 @@ function resolveLabHash(hash: string) {
     return {
       slug: 'rag',
       technology: getTechnologyBySlug('rag'),
+      kind: 'lab' as const,
     }
   }
 
@@ -33,54 +37,92 @@ function resolveLabHash(hash: string) {
   return {
     slug,
     technology,
+    kind: technology?.experienceId ? 'lab' : 'coming-soon',
   }
 }
 
+function resolveProjectHash(hash: string) {
+  const match = /^#project\/(.+)$/.exec(hash)
+
+  if (!match) {
+    return null
+  }
+
+  return getProjectBySlug(match[1])
+}
+
 function App() {
-  const [labState, setLabState] = useState(() => {
-    const resolved = resolveLabHash(window.location.hash)
+  const [state, setState] = useState(() => {
+    const resolvedLab = resolveLabHash(window.location.hash)
 
-    if (!resolved) {
-      return { kind: 'home' as const }
+    if (resolvedLab) {
+      const experience =
+        resolvedLab.technology?.experienceId &&
+        resolvedLab.technology.experienceId in experienceMap
+          ? experienceMap[
+              resolvedLab.technology.experienceId as keyof typeof experienceMap
+            ]
+          : null
+
+      return {
+        kind: resolvedLab.kind,
+        technology: resolvedLab.technology,
+        experience,
+        project: null,
+      }
     }
 
-    const experience =
-      resolved.technology?.experienceId &&
-      resolved.technology.experienceId in experienceMap
-        ? experienceMap[
-            resolved.technology.experienceId as keyof typeof experienceMap
-          ]
-        : null
+    const project = resolveProjectHash(window.location.hash)
 
-    return {
-      kind: experience ? ('lab' as const) : ('coming-soon' as const),
-      technology: resolved.technology,
-      experience,
+    if (project) {
+      return {
+        kind: 'project' as const,
+        technology: null,
+        experience: null,
+        project,
+      }
     }
+
+    return { kind: 'home' as const, technology: null, experience: null, project: null }
   })
 
   useEffect(() => {
     const handleHashChange = () => {
-      const resolved = resolveLabHash(window.location.hash)
+      const resolvedLab = resolveLabHash(window.location.hash)
 
-      if (!resolved) {
-        setLabState({ kind: 'home' })
+      if (resolvedLab) {
+        const experience =
+          resolvedLab.technology?.experienceId &&
+          resolvedLab.technology.experienceId in experienceMap
+            ? experienceMap[
+                resolvedLab.technology.experienceId as keyof typeof experienceMap
+              ]
+            : null
+
+        setState({
+          kind: resolvedLab.kind,
+          technology: resolvedLab.technology,
+          experience,
+          project: null,
+        })
+
         return
       }
 
-      const experience =
-        resolved.technology?.experienceId &&
-        resolved.technology.experienceId in experienceMap
-          ? experienceMap[
-              resolved.technology.experienceId as keyof typeof experienceMap
-            ]
-          : null
+      const project = resolveProjectHash(window.location.hash)
 
-      setLabState({
-        kind: experience ? 'lab' : 'coming-soon',
-        technology: resolved.technology,
-        experience,
-      })
+      if (project) {
+        setState({
+          kind: 'project',
+          technology: null,
+          experience: null,
+          project,
+        })
+
+        return
+      }
+
+      setState({ kind: 'home', technology: null, experience: null, project: null })
     }
 
     window.addEventListener('hashchange', handleHashChange)
@@ -90,7 +132,7 @@ function App() {
     }
   }, [])
 
-  if (labState.kind === 'lab' && labState.experience) {
+  if (state.kind === 'lab' && state.experience) {
     return (
       <>
         <Navbar />
@@ -101,7 +143,7 @@ function App() {
     )
   }
 
-  if (labState.kind === 'coming-soon' && labState.technology) {
+  if (state.kind === 'coming-soon' && state.technology) {
     return (
       <>
         <Navbar />
@@ -109,14 +151,21 @@ function App() {
           <section className="edduu-learning-lab">
             <div className="edduu-container">
               <p className="edduu-section-eyebrow">Technology</p>
-              <h1 className="edduu-section-title">
-                {labState.technology.name}
-              </h1>
-              <p className="edduu-section-description">
-                Coming Soon.
-              </p>
+              <h1 className="edduu-section-title">{state.technology.name}</h1>
+              <p className="edduu-section-description">Coming Soon.</p>
             </div>
           </section>
+        </main>
+      </>
+    )
+  }
+
+  if (state.kind === 'project' && state.project) {
+    return (
+      <>
+        <Navbar />
+        <main id="project">
+          <ProjectDetailShell project={state.project} />
         </main>
       </>
     )
@@ -129,6 +178,7 @@ function App() {
       <WhatIsEDDUU />
       <ExperienceDemo />
       <TechnologyUniverse />
+      <ProjectsSection />
     </>
   )
 }
