@@ -43,6 +43,23 @@ function LearningLabShell({
     )
   }
 
+  const handleStageSelect = (stageNumber: number) => {
+    setProgress((currentProgress) => {
+      const isSelectable =
+        stageNumber <= currentProgress.currentStage ||
+        currentProgress.completedStages.includes(stageNumber)
+
+      if (!isSelectable) {
+        return currentProgress
+      }
+
+      return {
+        ...currentProgress,
+        currentStage: stageNumber,
+      }
+    })
+  }
+
   return (
     <section className="edduu-learning-lab">
       <div className="edduu-container">
@@ -64,9 +81,11 @@ function LearningLabShell({
           stages={experience.stages}
           currentStage={progress.currentStage}
           completedStages={progress.completedStages}
+          onStageSelect={handleStageSelect}
         />
 
         <StageRenderer
+          key={activeStage.id}
           stage={activeStage}
           onInteractionComplete={
             handleInteractionComplete

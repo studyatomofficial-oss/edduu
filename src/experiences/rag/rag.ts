@@ -5,8 +5,12 @@ import type {
 
 import { ragSeeStage } from './stages/see'
 import { ragUnderstandStage } from './stages/understand'
+import { ragTechnicalStage } from './stages/technical'
+import { ragInteractStage } from './stages/interact'
 import { ragBuildStage } from './stages/build'
 import { ragBreakStage } from './stages/break'
+import { ragFixStage } from './stages/fix'
+import { ragProductionStage } from './stages/production'
 
 export const ragTechnology: TechnologyDefinition = {
   id: 'rag',
@@ -27,11 +31,15 @@ export const ragExperience: ExperienceDefinition = {
   version: '1.0.0',
   title: 'RAG Learning Lab',
   objective:
-    'Explain why RAG exists, understand how a RAG system works, build a basic one, diagnose retrieval failures, improve it, and discuss production trade-offs as a technical leader.',
+    'Explain why RAG exists, understand the technical architecture, build a basic pipeline, diagnose retrieval failures, repair the system, and verify production concerns.',
   stages: [
-  ragSeeStage,
-  ragUnderstandStage,
-  ragBuildStage,
-  ragBreakStage,
+    ragSeeStage,
+    ragUnderstandStage,
+    ragTechnicalStage,
+    ragInteractStage,
+    ragBuildStage,
+    ragBreakStage,
+    ragFixStage,
+    ragProductionStage,
   ],
 }

@@ -7,11 +7,30 @@ type PipelineStep = {
 
 type PipelineBuilderProps = {
   steps?: PipelineStep[]
+  instruction?: string
   onComplete?: () => void
+}
+
+function shuffleSteps<T>(items: T[]): T[] {
+  const next = [...items]
+
+  for (let index = next.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(
+      Math.random() * (index + 1),
+    )
+
+    ;[next[index], next[randomIndex]] = [
+      next[randomIndex],
+      next[index],
+    ]
+  }
+
+  return next
 }
 
 function PipelineBuilder({
   steps = [],
+  instruction,
   onComplete,
 }: PipelineBuilderProps) {
   const [selectedSteps, setSelectedSteps] = useState<
@@ -19,6 +38,10 @@ function PipelineBuilder({
   >([])
 
   const [completed, setCompleted] = useState(false)
+  const [feedback, setFeedback] = useState('')
+  const [displaySteps, setDisplaySteps] = useState<
+    PipelineStep[]
+  >(() => shuffleSteps(steps))
 
   const handleStepClick = (stepId: string) => {
     if (completed) {
@@ -29,9 +52,18 @@ function PipelineBuilder({
       return
     }
 
-    const nextSteps = [...selectedSteps, stepId]
+    const expectedStepId = steps[selectedSteps.length]?.id
 
+    if (stepId !== expectedStepId) {
+      setFeedback(
+        'That step is out of order. Try the next step in sequence.',
+      )
+      return
+    }
+
+    const nextSteps = [...selectedSteps, stepId]
     setSelectedSteps(nextSteps)
+    setFeedback('')
 
     if (nextSteps.length === steps.length) {
       setCompleted(true)
@@ -40,8 +72,10 @@ function PipelineBuilder({
   }
 
   const handleReset = () => {
+    setDisplaySteps(shuffleSteps(steps))
     setSelectedSteps([])
     setCompleted(false)
+    setFeedback('')
   }
 
   return (
@@ -54,12 +88,12 @@ function PipelineBuilder({
         .join(' ')}
     >
       <p className="edduu-pipeline-instruction">
-        Select the RAG components in the correct
-        execution order.
+        {instruction ??
+          'Select the components in the correct execution order.'}
       </p>
 
       <div className="edduu-pipeline-options">
-        {steps.map((step) => {
+        {displaySteps.map((step) => {
           const position =
             selectedSteps.indexOf(step.id)
 
@@ -81,12 +115,16 @@ function PipelineBuilder({
         })}
       </div>
 
+      {feedback && (
+        <p className="edduu-pipeline-feedback">
+          {feedback}
+        </p>
+      )}
+
       {completed && (
         <div className="edduu-pipeline-success">
           <strong>Pipeline completed ✓</strong>
-          <p>
-            You assembled the complete RAG pipeline.
-          </p>
+          <p>You assembled the complete workflow.</p>
         </div>
       )}
 

@@ -1,8 +1,8 @@
 import type { StageDefinition } from '../../../types/learning'
 
 export const ragBreakStage: StageDefinition = {
-  id: 'rag-stage-04-break',
-  number: 4,
+  id: 'rag-stage-06-break',
+  number: 6,
   key: 'break',
   title: 'Break',
 
@@ -17,7 +17,7 @@ export const ragBreakStage: StageDefinition = {
   },
 
   content: {
-    eyebrow: '04 — BREAK',
+    eyebrow: '06 — BREAK',
 
     title:
       'What happens when RAG retrieves the wrong information?',

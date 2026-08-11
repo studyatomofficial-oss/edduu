@@ -91,8 +91,8 @@ function DiagnosticInteraction({
         selectedOption !== correctOptionId &&
         !completed && (
           <p className="edduu-diagnostic-feedback">
-            Not quite. Trace the RAG pipeline again and
-            inspect where the evidence becomes irrelevant.
+            Not quite. Trace the pipeline again and inspect
+            where the evidence becomes irrelevant.
           </p>
         )}
     </div>

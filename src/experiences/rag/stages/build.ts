@@ -1,8 +1,8 @@
 import type { StageDefinition } from '../../../types/learning'
 
 export const ragBuildStage: StageDefinition = {
-  id: 'rag-stage-03-build',
-  number: 3,
+  id: 'rag-stage-05-build',
+  number: 5,
   key: 'build',
   title: 'Build',
 
@@ -17,7 +17,7 @@ export const ragBuildStage: StageDefinition = {
   },
 
   content: {
-    eyebrow: '03 — BUILD',
+    eyebrow: '05 — BUILD',
 
     title:
       'Can you assemble a basic RAG pipeline?',
@@ -40,6 +40,8 @@ export const ragBuildStage: StageDefinition = {
     instruction:
       'Select the components in the order they participate in a basic RAG system.',
     config: {
+      instruction:
+        'Select the components in the order they participate in a basic RAG system.',
       steps: [
         {
           id: 'documents',
