@@ -106,6 +106,8 @@ export type ExperienceDefinition = {
   stages: StageDefinition[]
 }
 
+export type LabDefinition = ExperienceDefinition
+
 export type ProjectDefinition = {
   id: string
   slug: string
