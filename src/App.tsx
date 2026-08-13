@@ -7,14 +7,10 @@ import ExperienceDemo from './components/ExperienceDemo'
 import TechnologyUniverse from './components/TechnologyUniverse'
 import ProjectsSection from './components/ProjectsSection'
 import ProjectDetailShell from './components/ProjectDetailShell'
-import RAGLab from './pages/RAGLab'
+import LearningLabShell from './engine/LearningLabShell'
 import { getProjectBySlug } from './data/projects'
 import { getTechnologyBySlug } from './data/technologies'
-import { ragExperience } from './experiences/rag/rag'
-
-const experienceMap = {
-  'rag-v1': ragExperience,
-}
+import { getExperienceById } from './data/experiences'
 
 function resolveLabHash(hash: string) {
   if (hash === '#lab' || hash === '#lab/') {
@@ -57,11 +53,8 @@ function App() {
 
     if (resolvedLab) {
       const experience =
-        resolvedLab.technology?.experienceId &&
-        resolvedLab.technology.experienceId in experienceMap
-          ? experienceMap[
-              resolvedLab.technology.experienceId as keyof typeof experienceMap
-            ]
+        resolvedLab.technology?.experienceId
+          ? getExperienceById(resolvedLab.technology.experienceId)
           : null
 
       return {
@@ -92,11 +85,8 @@ function App() {
 
       if (resolvedLab) {
         const experience =
-          resolvedLab.technology?.experienceId &&
-          resolvedLab.technology.experienceId in experienceMap
-            ? experienceMap[
-                resolvedLab.technology.experienceId as keyof typeof experienceMap
-              ]
+          resolvedLab.technology?.experienceId
+            ? getExperienceById(resolvedLab.technology.experienceId)
             : null
 
         setState({
@@ -137,7 +127,7 @@ function App() {
       <>
         <Navbar />
         <main id="lab">
-          <RAGLab />
+          <LearningLabShell experience={state.experience} />
         </main>
       </>
     )
