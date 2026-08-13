@@ -144,6 +144,7 @@ export const technologies: TechnologyDefinition[] = [
     category: 'Data',
     description: 'In-memory data structures and operational caching patterns.',
     difficulty: 'intermediate',
+    experienceId: 'redis-v1',
   },
   {
     id: 'cloud',

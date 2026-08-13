@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 type DiagnosticOption = {
   id: string
@@ -11,11 +11,47 @@ type DiagnosticInteractionProps = {
   onComplete?: () => void
 }
 
+function getStableValue(value: string) {
+  let hash = 0
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) | 0
+  }
+
+  return Math.abs(hash)
+}
+
 function DiagnosticInteraction({
   options = [],
   correctOptionId,
   onComplete,
 }: DiagnosticInteractionProps) {
+  const displayOptions = useMemo(() => {
+    if (options.length < 2 || !correctOptionId) {
+      return options
+    }
+
+    const shuffled = [...options].sort(
+      (first, second) =>
+        getStableValue(first.id) - getStableValue(second.id),
+    )
+
+    if (shuffled[0]?.id === correctOptionId) {
+      const swapIndex = shuffled.findIndex(
+        (option) => option.id !== correctOptionId,
+      )
+
+      if (swapIndex > 0) {
+        ;[shuffled[0], shuffled[swapIndex]] = [
+          shuffled[swapIndex],
+          shuffled[0],
+        ]
+      }
+    }
+
+    return shuffled
+  }, [options, correctOptionId])
+
   const [selectedOption, setSelectedOption] =
     useState<string | null>(null)
 
@@ -44,7 +80,7 @@ function DiagnosticInteraction({
         .join(' ')}
     >
       <div className="edduu-diagnostic-options">
-        {options.map((option) => {
+        {displayOptions.map((option) => {
           const isSelected =
             selectedOption === option.id
 
