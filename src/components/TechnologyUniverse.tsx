@@ -64,7 +64,7 @@ function TechnologyUniverse() {
           <p className="edduu-section-eyebrow">Technology universe</p>
 
           <h2 id="edduu-technology-universe-title">
-            10 modules. 100+ technologies.
+            10 technology domains. 100+ technologies.
           </h2>
 
           <p>
@@ -113,8 +113,8 @@ function TechnologyUniverse() {
             far beyond this sample.
           </p>
 
-          <a href="#lab" className="edduu-button edduu-button-primary">
-            Explore EDDUU →
+          <a href="#technologies" className="edduu-button edduu-button-primary">
+            Explore All Technologies →
           </a>
         </div>
       </div>
@@ -123,3 +123,5 @@ function TechnologyUniverse() {
 }
 
 export default TechnologyUniverse
+
+

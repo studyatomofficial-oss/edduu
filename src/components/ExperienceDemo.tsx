@@ -1,114 +1,164 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-type SimulationStep = {
+type ThinkingStage = {
   label: string
   description: string
 }
 
-const simulationSteps: SimulationStep[] = [
+const thinkingStages: ThinkingStage[] = [
   {
-    label: 'USER',
-    description: 'A user request enters the system.',
+    label: 'TOOLS',
+    description:
+      'Know the technologies that can be used to solve a problem.',
   },
   {
-    label: 'AI',
-    description: 'The AI understands the request and decides what to do.',
+    label: 'CONNECTIONS',
+    description:
+      'See how different technologies depend on and communicate with each other.',
   },
   {
-    label: 'TOOL',
-    description: 'The AI uses a tool to perform the required action.',
+    label: 'DECISIONS',
+    description:
+      'Understand why one technical approach is chosen over another.',
   },
   {
-    label: 'RESULT',
-    description: 'The system returns the result to the user.',
+    label: 'TRADE-OFFS',
+    description:
+      'Recognize what is gained, what is sacrificed, and what the decision costs.',
   },
-]
-
-const learningLoop = [
-  'See', 'Interact', 'Build', 'Break', 'Fix', 'Production',
+  {
+    label: 'SYSTEM THINKING',
+    description:
+      'See the complete system as a set of connected decisions working toward an outcome.',
+  },
 ]
 
 function ExperienceDemo() {
-  const [currentStep, setCurrentStep] = useState(-1)
+  const [currentStage, setCurrentStage] = useState(-1)
   const [isRunning, setIsRunning] = useState(false)
+  const intervalRef = useRef<number | null>(null)
 
-  const startSimulation = () => {
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current)
+      }
+    }
+  }, [])
+
+  const startExperience = () => {
     if (isRunning) {
       return
     }
 
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current)
+    }
+
     setIsRunning(true)
-    setCurrentStep(0)
+    setCurrentStage(0)
 
-    let step = 0
+    let stage = 0
 
-    const interval = window.setInterval(() => {
-      step += 1
+    intervalRef.current = window.setInterval(() => {
+      stage += 1
 
-      if (step < simulationSteps.length) {
-        setCurrentStep(step)
+      if (stage < thinkingStages.length) {
+        setCurrentStage(stage)
       } else {
-        window.clearInterval(interval)
+        if (intervalRef.current !== null) {
+          window.clearInterval(intervalRef.current)
+          intervalRef.current = null
+        }
+
         setIsRunning(false)
       }
-    }, 1200)
+    }, 900)
   }
 
+  const selectStage = (index: number) => {
+    if (isRunning) {
+      return
+    }
+
+    setCurrentStage((current) =>
+      current === index ? -1 : index,
+    )
+  }
+
+  const activeDescription =
+    currentStage >= 0
+      ? thinkingStages[currentStage].description
+      : 'Move from knowing individual technologies to understanding the decisions that shape complete systems.'
+
   return (
-    <section className="edduu-experience" id="learn">
+    <section className="edduu-experience edduu-shift-section" id="learn">
       <div className="edduu-container">
-        <div className="edduu-experience-heading">
-          <p className="edduu-section-eyebrow">
-            HOW EDDUU WORKS
+        <div className="edduu-shift-heading">
+          <p className="edduu-section-eyebrow edduu-shift-eyebrow">
+            THE SHIFT
           </p>
 
-          <h2 className="edduu-section-title">
-            Learn through systems, not slides.
+          <h2 className="edduu-section-title edduu-shift-title">
+            From knowing tools to thinking in systems.
           </h2>
 
-          <p className="edduu-section-description">
-            See a compact technology flow and feel how a real system
-            progresses from request to result.
+          <p className="edduu-section-description edduu-shift-description">
+            Technology becomes useful when you understand not only what
+            each tool does, but how connections, decisions, and trade-offs
+            shape the system around it.
           </p>
-
-          <div className="edduu-learning-loop" aria-label="EDDUU learning loop">
-            {learningLoop.map((step) => <span key={step}>{step}</span>)}
-          </div>
         </div>
 
-        <div className="edduu-experience-demo">
-          <div className="edduu-experience-status">
-            {currentStep === -1
-              ? 'Ready to run — start the compact system flow.'
-              : isRunning
-                ? simulationSteps[currentStep].description
-                : 'Simulation complete — you saw how the system moved.'}
+        <div className="edduu-shift-experience">
+          <div className="edduu-shift-status" aria-live="polite">
+            <span className="edduu-shift-status-index">
+              {currentStage >= 0
+                ? String(currentStage + 1).padStart(2, '0')
+                : '—'}
+            </span>
+
+            <span>{activeDescription}</span>
           </div>
 
-          <div className="edduu-experience-flow">
-            {simulationSteps.map((step, index) => {
-              const isActive = index === currentStep
+          <div
+            className="edduu-shift-track"
+            aria-label="EDDUU system thinking progression"
+          >
+            {thinkingStages.map((stage, index) => {
+              const isActive = index === currentStage
               const isComplete =
-                currentStep >= 0 && index < currentStep
+                currentStage >= 0 && index < currentStage
 
               return (
                 <div
-                  className="edduu-experience-step-wrapper"
-                  key={step.label}
+                  className="edduu-shift-stage-wrapper"
+                  key={stage.label}
                 >
-                  <div
-                    className={`edduu-experience-step ${
+                  <button
+                    type="button"
+                    className={`edduu-shift-stage ${
                       isActive ? 'is-active' : ''
                     } ${isComplete ? 'is-complete' : ''}`}
+                    onClick={() => selectStage(index)}
+                    disabled={isRunning}
+                    aria-pressed={isActive}
                   >
-                    <span>{step.label}</span>
-                  </div>
+                    <span className="edduu-shift-stage-number">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
 
-                  {index < simulationSteps.length - 1 && (
+                    <span className="edduu-shift-stage-label">
+                      {stage.label}
+                    </span>
+                  </button>
+
+                  {index < thinkingStages.length - 1 && (
                     <div
-                      className={`edduu-experience-connector ${
+                      className={`edduu-shift-connector ${
                         isComplete ? 'is-complete' : ''
                       }`}
+                      aria-hidden="true"
                     />
                   )}
                 </div>
@@ -116,14 +166,22 @@ function ExperienceDemo() {
             })}
           </div>
 
-          <button
-            type="button"
-            className="edduu-button edduu-button-primary edduu-experience-button"
-            onClick={startSimulation}
-            disabled={isRunning}
-          >
-            {isRunning ? 'Running…' : 'Start Simulation →'}
-          </button>
+          <div className="edduu-shift-footer">
+            <p>
+              One technology becomes a connected system of decisions.
+            </p>
+
+            <button
+              type="button"
+              className="edduu-button edduu-button-primary edduu-shift-button"
+              onClick={startExperience}
+              disabled={isRunning}
+            >
+              {isRunning
+                ? 'Following the shift…'
+                : 'Experience the Shift →'}
+            </button>
+          </div>
         </div>
       </div>
     </section>

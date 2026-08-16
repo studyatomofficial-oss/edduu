@@ -1,0 +1,1278 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  scroll-behavior: smooth;
+}
+
+/* Universal box-sizing — without this, padding on grid/flex items
+   can push their outer size past the track/container width on
+   narrow viewports (the #1 cause of "breaks on some screen size
+   but not others"). */
+.av2-page,
+.av2-page *,
+.av2-page *::before,
+.av2-page *::after {
+  box-sizing: border-box;
+}
+
+/* Long unbroken strings (numbers, emails, URLs) inside a grid/flex
+   track will force that track wider than its allotted space instead
+   of wrapping. This guarantees text always wraps to its container. */
+.av2-page h1,
+.av2-page h2,
+.av2-page h3,
+.av2-page p,
+.av2-page span,
+.av2-page strong,
+.av2-page a {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* =========================================================
+   AVINASH — CLEAN RESPONSIVE DESIGN SYSTEM
+   Large Desktop / Desktop / Tablet / Mobile / Small Mobile
+   ========================================================= */
+
+.av2-page {
+  --bg: #f5f3ee;
+  --paper: #fbfaf7;
+  --ink: #172536;
+  --muted: #596776;
+  --soft: #8994a0;
+  --line: rgba(23, 37, 54, 0.13);
+  --line-soft: rgba(23, 37, 54, 0.08);
+  --accent: #c58b24;
+  --accent-soft: rgba(197, 139, 36, 0.09);
+
+  /* ---------------------------------------------------------
+     FLUID TYPE SCALE
+     Every font-size on the page is driven from these tokens.
+     clamp(min, preferred, max) means sizes scale continuously
+     with the viewport instead of jumping at each breakpoint,
+     so every size stays proportionally coordinated everywhere.
+     --------------------------------------------------------- */
+  --fs-mono-xs: 11px;   /* 8   -> 9px   micro labels */
+  --fs-mono-sm: 12px; /* 9   -> 10px  side/section labels */
+  --fs-mono-md: 13px;  /* 10  -> 11px  role/actions */
+  --fs-body-xs: clamp(0.75rem, 0.71rem + 0.2vw, 0.8125rem);   /* 12  -> 13px  fine print */
+  --fs-body-sm: clamp(0.8125rem, 0.77rem + 0.22vw, 0.875rem); /* 13  -> 14px  card copy */
+  --fs-body: clamp(0.875rem, 0.83rem + 0.25vw, 1rem);         /* 14  -> 16px  section intros */
+  --fs-lede: clamp(1.25rem, 1.02rem + 1.2vw, 1.6875rem);      /* 20  -> 27px  hero lede */
+  --fs-h3: clamp(1.5rem, 1.35rem + 0.8vw, 1.5625rem);         /* 24  -> 25px  thinking card h3 */
+  --fs-h2: clamp(2.125rem, 1.55rem + 3vw, 3.875rem);          /* 34  -> 62px  section heads */
+  --fs-h1: clamp(3.375rem, 1.9rem + 7vw, 6.75rem);            /* 54  -> 108px hero h1 */
+  --fs-metric: clamp(1.875rem, 1.4rem + 2.2vw, 3rem);         /* 30  -> 48px  metric numbers */
+  --fs-program-h3: clamp(1.875rem, 1.3rem + 3vw, 3rem);       /* 30  -> 48px  program titles */
+  --fs-program-proof: clamp(1.1875rem, 1rem + 0.9vw, 1.3125rem); /* 19 -> 21px */
+  --fs-ai-h2: clamp(2.25rem, 1.5rem + 3.5vw, 4.25rem);        /* 36  -> 68px  AI section head */
+  --fs-ai-proof: clamp(1.75rem, 1.4rem + 1.6vw, 1.875rem);    /* 28  -> 30px */
+  --fs-final-h2: clamp(2.375rem, 1.4rem + 4.5vw, 4.75rem);    /* 38  -> 76px  final CTA */
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(255, 255, 255, 0.95),
+      transparent 42%
+    ),
+    var(--bg);
+
+  color: var(--ink);
+  font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ---------------------------------------------------------
+   BACKGROUND
+   --------------------------------------------------------- */
+
+.av2-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.48;
+
+  background-image:
+    linear-gradient(rgba(23, 37, 54, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 37, 54, 0.035) 1px, transparent 1px);
+
+  background-size: 32px 32px;
+  animation: av2GridDrift 24s linear infinite;
+}
+
+.av2-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(197, 139, 36, 0.045),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 85% 60%,
+      rgba(23, 37, 54, 0.035),
+      transparent 28%
+    );
+}
+
+/* ---------------------------------------------------------
+   SHELL
+   --------------------------------------------------------- */
+
+.av2-shell {
+  width: min(1180px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------
+   TOPLINE
+   --------------------------------------------------------- */
+
+.av2-topline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 58px;
+
+  border-bottom: 1px solid var(--line);
+
+  color: var(--soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.av2-topline span:nth-child(2) {
+  justify-self: center;
+}
+
+.av2-topline span:last-child {
+  justify-self: end;
+}
+
+/* ---------------------------------------------------------
+   GLOBAL TYPOGRAPHY
+   --------------------------------------------------------- */
+
+.av2-page h1,
+.av2-page h2,
+.av2-page h3,
+.av2-page p {
+  margin-top: 0;
+}
+
+.av2-page h1,
+.av2-page h2,
+.av2-page h3 {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.av2-page p {
+  color: var(--muted);
+}
+
+.av2-eyebrow,
+.av2-side-label,
+.av2-metric-label,
+.av2-program-meta,
+.av2-ai-proof span,
+.av2-final-index {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
+.av2-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: clamp(48px, 7vw, 110px);
+
+  min-height: 680px;
+  padding: clamp(58px, 9vw, 92px) 0 clamp(68px, 10vw, 110px);
+  align-items: center;
+}
+
+.av2-hero-main {
+  min-width: 0;
+  animation: av2FadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.av2-eyebrow {
+  margin-bottom: clamp(18px, 2vw, 22px);
+
+  color: var(--accent);
+  font-size: var(--fs-mono-sm);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.av2-hero-main h1 {
+  margin-bottom: clamp(24px, 2.5vw, 28px);
+
+  font-size: var(--fs-h1);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.065em;
+}
+
+.av2-hero-main h1 span {
+  display: block;
+  color: var(--ink);
+}
+
+.av2-role {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: clamp(20px, 2vw, 24px);
+
+  color: var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-md);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.av2-status {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(197, 139, 36, 0.1);
+
+  animation: av2Pulse 2.5s ease-in-out infinite;
+}
+
+.av2-hero-lede {
+  max-width: 680px;
+  margin-bottom: 18px;
+
+  color: var(--ink) !important;
+  font-size: var(--fs-lede) !important;
+  font-weight: 500;
+  line-height: 1.38 !important;
+  letter-spacing: -0.02em;
+}
+
+.av2-hero-support {
+  max-width: 650px;
+  margin-bottom: clamp(27px, 3vw, 34px);
+
+  font-size: var(--fs-body) !important;
+  line-height: 1.7 !important;
+}
+
+.av2-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  animation: av2FadeUp 0.8s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.av2-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 0 18px;
+
+  border: 1px solid var(--line);
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.38);
+  color: var(--ink);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-sm);
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  text-decoration: none;
+
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.av2-action:hover {
+  transform: translateY(-3px);
+  border-color: rgba(23, 37, 54, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 28px rgba(23, 37, 54, 0.08);
+}
+
+.av2-action-primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+
+.av2-action-primary:hover {
+  border-color: var(--ink);
+  background: #22364e;
+}
+
+/* ---------------------------------------------------------
+   HERO SIDE
+   --------------------------------------------------------- */
+
+.av2-hero-side {
+  min-width: 0;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 24px 0 0;
+
+  border-top: 1px solid var(--line);
+
+  animation: av2FadeUp 0.8s 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.av2-side-label {
+  color: var(--soft);
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.av2-side-list {
+  margin: 34px 0;
+}
+
+.av2-side-list > div {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.av2-side-list > div:first-child {
+  border-top: 1px solid var(--line-soft);
+}
+
+.av2-side-list span {
+  color: var(--soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-xs);
+}
+
+.av2-side-list strong {
+  color: var(--ink);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.av2-side-note {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.av2-side-note > span {
+  display: block;
+  margin-bottom: 8px;
+
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.av2-side-note p {
+  max-width: 320px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-body-xs);
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------
+   SECTIONS
+   --------------------------------------------------------- */
+
+.av2-section {
+  padding: clamp(62px, 9vw, 105px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.av2-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 50px;
+  align-items: end;
+
+  margin-bottom: clamp(30px, 4vw, 52px);
+}
+
+.av2-section-head h2,
+.av2-section-head > p {
+  min-width: 0;
+}
+
+.av2-section-head h2 {
+  max-width: 760px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+}
+
+.av2-section-head h2 span,
+.av2-ai-header h2 span,
+.av2-final h2 span {
+  color: var(--accent);
+}
+
+.av2-section-head > p {
+  max-width: 430px;
+  margin-bottom: 2px;
+
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   METRICS
+   --------------------------------------------------------- */
+
+.av2-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.av2-metric {
+  min-width: 0;
+  min-height: 190px;
+  padding: 25px;
+
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  transition:
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.av2-metric:hover {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-4px);
+  background: var(--paper);
+  box-shadow: 0 18px 36px rgba(23, 37, 54, 0.08);
+}
+
+.av2-metric strong {
+  display: block;
+  margin-bottom: 14px;
+
+  color: var(--ink);
+  font-size: var(--fs-metric);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.av2-metric-label {
+  display: block;
+  margin-bottom: 18px;
+
+  color: var(--accent);
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.av2-metric p {
+  max-width: 250px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-body-sm);
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------
+   THINKING MODEL
+   --------------------------------------------------------- */
+
+.av2-thinking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.av2-thinking-card {
+  min-width: 0;
+  min-height: 235px;
+  padding: 27px;
+
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  transition:
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.av2-thinking-card:hover {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-4px);
+  background: var(--paper);
+  box-shadow: 0 18px 36px rgba(23, 37, 54, 0.07);
+}
+
+.av2-thinking-number {
+  display: block;
+  margin-bottom: 38px;
+
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-md);
+  font-weight: 700;
+}
+
+.av2-thinking-card h3 {
+  margin-bottom: 10px;
+  font-size: var(--fs-h3);
+  line-height: 1;
+}
+
+.av2-thinking-card p {
+  max-width: 310px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-body-sm);
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------
+   PROGRAMS
+   --------------------------------------------------------- */
+
+.av2-program-list {
+  border-top: 1px solid var(--line);
+}
+
+.av2-program {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 28px;
+
+  padding: 42px 0;
+
+  border-bottom: 1px solid var(--line);
+
+  transition:
+    padding-left 280ms ease,
+    background 280ms ease;
+}
+
+.av2-program:hover {
+  padding-left: 12px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.av2-program-index {
+  padding-top: 4px;
+
+  color: var(--soft);
+  font-size: var(--fs-mono-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.av2-program-body {
+  min-width: 0;
+}
+
+.av2-program-meta {
+  margin-bottom: 10px;
+
+  color: var(--accent);
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.11em;
+}
+
+.av2-program-body h3 {
+  margin-bottom: clamp(18px, 2.5vw, 28px);
+
+  font-size: var(--fs-program-h3);
+  line-height: 1;
+}
+
+.av2-program-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 50px;
+  max-width: 900px;
+}
+
+.av2-program-columns span {
+  display: block;
+  margin-bottom: 9px;
+
+  color: var(--soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.av2-program-columns p {
+  max-width: 520px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-body-sm);
+  line-height: 1.65;
+}
+
+.av2-program-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+
+  margin-top: 28px;
+  padding-top: 19px;
+
+  border-top: 1px solid var(--line-soft);
+}
+
+.av2-program-proof strong {
+  color: var(--ink);
+  font-size: var(--fs-program-proof);
+  letter-spacing: -0.035em;
+}
+
+.av2-program-proof span {
+  margin-right: 22px;
+
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-xs);
+  letter-spacing: 0.04em;
+}
+
+.av2-program-featured {
+  border-left: 3px solid var(--accent);
+  padding-left: 18px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-soft),
+    transparent 60%
+  );
+}
+
+.av2-program-featured:hover {
+  padding-left: 26px;
+}
+
+/* ---------------------------------------------------------
+   AI TRANSFORMATION
+   --------------------------------------------------------- */
+
+.av2-ai-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 60px;
+  align-items: end;
+
+  margin-bottom: clamp(32px, 4vw, 55px);
+}
+
+.av2-ai-header h2,
+.av2-ai-header p {
+  min-width: 0;
+}
+
+.av2-ai-header h2 {
+  margin-bottom: 0;
+
+  font-size: var(--fs-ai-h2);
+  line-height: 0.98;
+}
+
+.av2-ai-header p {
+  max-width: 470px;
+  margin-bottom: 0;
+
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+
+.av2-ai-flow {
+  display: flex;
+  align-items: stretch;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.av2-ai-flow div {
+  flex: 1;
+  min-width: 0;
+  padding: 25px 18px;
+
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+
+.av2-ai-flow div:first-child {
+  border-left: 1px solid var(--line);
+}
+
+.av2-ai-flow span {
+  display: block;
+  margin-bottom: 8px;
+
+  color: var(--soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-mono-xs);
+  letter-spacing: 0.08em;
+}
+
+.av2-ai-flow strong {
+  color: var(--ink);
+  font-size: var(--fs-body-sm);
+}
+
+.av2-ai-flow i {
+  display: flex;
+  align-items: center;
+
+  color: var(--accent);
+  font-size: 17px;
+  font-style: normal;
+}
+
+.av2-ai-proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  margin-top: 1px;
+
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.av2-ai-proof div {
+  min-width: 0;
+  padding: 27px 22px;
+
+  border-right: 1px solid var(--line);
+}
+
+.av2-ai-proof strong {
+  display: block;
+  margin-bottom: 8px;
+
+  color: var(--ink);
+  font-size: var(--fs-ai-proof);
+  letter-spacing: -0.045em;
+}
+
+.av2-ai-proof span {
+  color: var(--muted);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: 0.06em;
+}
+
+/* ---------------------------------------------------------
+   FINAL CTA
+   --------------------------------------------------------- */
+
+.av2-final {
+  position: relative;
+
+  padding: clamp(64px, 9vw, 115px) 0 clamp(70px, 10vw, 125px);
+
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.av2-final-index {
+  display: block;
+  margin-bottom: 20px;
+
+  color: var(--accent);
+  font-size: var(--fs-mono-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.av2-final h2 {
+  max-width: 820px;
+  margin: 0 auto 22px;
+
+  font-size: var(--fs-final-h2);
+  line-height: 0.98;
+}
+
+.av2-final p:not(.av2-eyebrow) {
+  max-width: 520px;
+  margin: 0 auto;
+
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+
+/* =========================================================
+   LARGE DESKTOP (tighten container on very wide screens)
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .av2-shell {
+    width: min(1280px, calc(100% - 96px));
+  }
+}
+
+/* =========================================================
+   LAPTOP / SMALL DESKTOP
+   (grid ratios ease slightly before the tablet stack)
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .av2-hero {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(40px, 5vw, 70px);
+  }
+
+  .av2-ai-header {
+    gap: 40px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 960px) {
+  .av2-shell {
+    width: min(100% - 44px, 820px);
+  }
+
+  .av2-hero {
+    grid-template-columns: 1fr;
+    gap: 58px;
+    min-height: auto;
+  }
+
+  .av2-hero-side {
+    align-self: auto;
+    padding-top: 25px;
+  }
+
+  .av2-side-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 25px 0;
+  }
+
+  .av2-side-list > div {
+    padding: 15px 12px 15px 0;
+  }
+
+  .av2-side-list > div:nth-child(3),
+  .av2-side-list > div:nth-child(4) {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .av2-section-head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .av2-metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .av2-thinking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .av2-ai-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .av2-ai-flow {
+    flex-wrap: wrap;
+  }
+
+  .av2-ai-flow div {
+    flex: 1 1 30%;
+  }
+
+  .av2-ai-flow i {
+    display: none;
+  }
+
+  .av2-ai-proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   LARGE MOBILE / SMALL TABLET (e.g. 504–700px phones)
+   Bridges the gap between the tablet 2-col layouts and the
+   600px mobile single-column rules so nothing feels squeezed.
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .av2-side-list {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-side-list > div:nth-child(3),
+  .av2-side-list > div:nth-child(4) {
+    border-top: 0;
+  }
+
+  .av2-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-thinking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-ai-flow {
+    flex-wrap: wrap;
+  }
+
+  .av2-ai-flow div {
+    flex: 1 1 45%;
+  }
+
+  .av2-ai-proof {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .av2-page {
+    overflow-x: hidden;
+  }
+
+  .av2-grid {
+    background-size: 24px 24px;
+  }
+
+  .av2-shell {
+    width: calc(100% - 36px);
+  }
+
+  .av2-topline {
+    grid-template-columns: 1fr auto;
+    min-height: 52px;
+  }
+
+  .av2-topline span:nth-child(2) {
+    display: none;
+  }
+
+  .av2-topline span:last-child {
+    justify-self: end;
+  }
+
+  /* Hero */
+
+  .av2-role {
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+
+  .av2-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .av2-action {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  /* Hero side */
+
+  .av2-hero-side {
+    padding-top: 20px;
+  }
+
+  .av2-side-list {
+    grid-template-columns: 1fr;
+    margin: 20px 0;
+  }
+
+  .av2-side-list > div {
+    grid-template-columns: 30px 1fr;
+    padding: 14px 0;
+  }
+
+  .av2-side-list > div:nth-child(3),
+  .av2-side-list > div:nth-child(4) {
+    border-top: 0;
+  }
+
+  /* Metrics */
+
+  .av2-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-metric {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .av2-metric-label {
+    margin-bottom: 12px;
+  }
+
+  .av2-metric p {
+    max-width: none;
+  }
+
+  /* Thinking */
+
+  .av2-thinking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-thinking-card {
+    min-height: 0;
+    padding: 23px;
+  }
+
+  .av2-thinking-number {
+    margin-bottom: 25px;
+  }
+
+  .av2-thinking-card p {
+    max-width: none;
+  }
+
+  /* Programs */
+
+  .av2-program {
+    display: block;
+    padding: 30px 0;
+  }
+
+  .av2-program:hover {
+    padding-left: 0;
+  }
+
+  .av2-program-featured {
+    padding-left: 14px;
+  }
+
+  .av2-program-featured:hover {
+    padding-left: 18px;
+  }
+
+  .av2-program-index {
+    margin-bottom: 15px;
+  }
+
+  .av2-program-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .av2-program-columns > div + div {
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .av2-program-proof {
+    gap: 7px 10px;
+  }
+
+  .av2-program-proof span {
+    margin-right: 12px;
+  }
+
+  /* AI */
+
+  .av2-ai-flow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .av2-ai-flow div {
+    flex: none;
+    padding: 19px 10px;
+  }
+
+  .av2-ai-flow div:nth-child(odd) {
+    border-left: 1px solid var(--line);
+  }
+
+  .av2-ai-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-ai-proof div {
+    padding: 22px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE (iPhone SE / narrow Android, <=380px)
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .av2-shell {
+    width: calc(100% - 24px);
+  }
+
+  .av2-hero {
+    gap: 40px;
+    padding: 48px 0 56px;
+  }
+
+  .av2-hero-main h1 {
+    letter-spacing: -0.05em;
+  }
+
+  .av2-side-list {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-metric,
+  .av2-thinking-card {
+    padding: 18px;
+  }
+
+  .av2-program-columns {
+    gap: 16px;
+  }
+
+  .av2-ai-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .av2-ai-flow div:nth-child(odd) {
+    border-left: 1px solid var(--line);
+  }
+
+  .av2-final {
+    padding: 56px 0 64px;
+  }
+}
+
+/* =========================================================
+   MOTION
+   ========================================================= */
+
+@keyframes av2FadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes av2GridDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 32px 32px;
+  }
+}
+
+@keyframes av2Pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .av2-page,
+  .av2-grid,
+  .av2-hero-main,
+  .av2-hero-side,
+  .av2-actions,
+  .av2-status,
+  .av2-metric,
+  .av2-thinking-card,
+  .av2-program,
+  .av2-action {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.av2-program-years {
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+

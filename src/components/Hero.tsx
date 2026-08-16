@@ -1,14 +1,35 @@
 import { useState } from 'react'
 
-type NodeId = 'USER' | 'AI' | 'TOOL' | 'RAG' | 'LLM' | 'ANSWER'
+type NodeId =
+  | 'USER'
+  | 'APPLICATION'
+  | 'API'
+  | 'DATA'
+  | 'AI'
+  | 'INFRASTRUCTURE'
+  | 'RESULT'
 
 const nodeDetails: Record<NodeId, string> = {
-  USER: 'A user starts the task or asks a question.',
-  AI: 'The AI decides what information or action is needed.',
-  TOOL: 'A tool lets the AI interact with an external capability.',
-  RAG: 'RAG retrieves relevant information before the model responds.',
-  LLM: 'The language model processes the available context and generates a response.',
-  ANSWER: 'The system returns the final result to the user.',
+  USER:
+    'A real problem, question, or goal starts the experience.',
+
+  APPLICATION:
+    'The application is where people interact with the technology system.',
+
+  API:
+    'APIs connect different parts of the system and allow services to communicate.',
+
+  DATA:
+    'Data provides the information the system stores, retrieves, transforms, and uses.',
+
+  AI:
+    'AI can add reasoning, retrieval, prediction, or decision-making to the system.',
+
+  INFRASTRUCTURE:
+    'Infrastructure provides the runtime, deployment, scalability, and reliability underneath the system.',
+
+  RESULT:
+    'The complete system produces an outcome that the user can actually experience.',
 }
 
 function Hero() {
@@ -18,115 +39,141 @@ function Hero() {
     setActiveNode((current) => (current === node ? null : node))
   }
 
-  const nodeClass = (node: NodeId) => [
-    'edduu-system-node',
-    node === 'USER' ? 'edduu-system-node-user' : '',
-    node === 'LLM' ? 'edduu-system-node-llm' : '',
-    node === 'ANSWER' ? 'edduu-system-node-answer' : '',
-    node === 'AI' ? 'edduu-system-node-ai' : '',
-    activeNode === node ? 'is-active' : '',
-  ].filter(Boolean).join(' ')
+  const nodeClass = (node: NodeId) =>
+    [
+      'edduu-architecture-node',
+      node === 'USER' ? 'edduu-architecture-node-user' : '',
+      node === 'APPLICATION' ? 'edduu-architecture-node-application' : '',
+      node === 'AI' ? 'edduu-architecture-node-ai' : '',
+      node === 'RESULT' ? 'edduu-architecture-node-result' : '',
+      activeNode === node ? 'is-active' : '',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+  const renderNode = (node: NodeId, label: string = node) => (
+    <button
+      type="button"
+      className={nodeClass(node)}
+      onClick={() => toggleNode(node)}
+      aria-pressed={activeNode === node}
+    >
+      <span>{label}</span>
+    </button>
+  )
 
   return (
     <section className="edduu-hero">
       <div className="edduu-container edduu-hero-grid">
+
         <div className="edduu-hero-content">
           <p className="edduu-hero-eyebrow">
-            Interactive technology learning
+            Experiential technology learning
           </p>
 
           <h1 className="edduu-hero-title">
-            Learn AI by experiencing it.
+            Experience how modern technology actually works.
           </h1>
 
           <p className="edduu-hero-description">
-            Don't just read how technology works. Experience it.
+            Understand systems by seeing them, interacting with them,
+            building with them, and thinking about how they behave in the
+            real world.
           </p>
 
           <p className="edduu-hero-scale">
-            100+ technologies · 15+ real projects · Interactive simulations
+            100+ technologies · 17 real projects · Interactive experiences
           </p>
 
           <div className="edduu-hero-actions">
-            <a href="#lab" className="edduu-button edduu-button-primary">
-              Explore EDDUU →
+            <a
+              href="#technologies"
+              className="edduu-button edduu-button-primary"
+            >
+              Explore All Technologies →
+            </a>
+
+            <a
+              href="#avinash"
+              className="edduu-button edduu-button-secondary"
+            >
+              Meet Avinash →
             </a>
           </div>
         </div>
 
         <div className="edduu-hero-system">
-          <p className="edduu-hero-system-label">Interactive system</p>
+          <p className="edduu-hero-system-label">
+            A connected technology system
+          </p>
 
-          <div className="edduu-system-canvas">
-            <button
-              type="button"
-              className={nodeClass('USER')}
-              onClick={() => toggleNode('USER')}
-            >
-              USER
-            </button>
+          <div className="edduu-architecture-canvas">
 
-            {activeNode === 'USER' && <p className="edduu-system-detail">{nodeDetails.USER}</p>}
+            <div className="edduu-architecture-stage">
 
-            <div className="edduu-system-line" />
+              <div className="edduu-architecture-row edduu-architecture-row-center">
+                {renderNode('USER')}
+              </div>
 
-            <button
-              type="button"
-              className={nodeClass('AI')}
-              onClick={() => toggleNode('AI')}
-            >
-              AI
-            </button>
+              <div className="edduu-flow-connector" />
 
-            {activeNode === 'AI' && <p className="edduu-system-detail">{nodeDetails.AI}</p>}
+              <div className="edduu-architecture-row edduu-architecture-row-center">
+                {renderNode('APPLICATION')}
+              </div>
 
-            <div className="edduu-system-branches">
-              {(['TOOL', 'RAG'] as const).map((node) => (
-                <button
-                  key={node}
-                  type="button"
-                  className={nodeClass(node)}
-                  onClick={() => toggleNode(node)}
-                >
-                  {node}
-                </button>
-              ))}
+              <div className="edduu-branch-connector">
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <div className="edduu-architecture-row edduu-architecture-row-three">
+                {renderNode('API')}
+                {renderNode('DATA')}
+                {renderNode('AI')}
+              </div>
+
+              <div className="edduu-merge-connector">
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <div className="edduu-architecture-row edduu-architecture-row-center">
+                {renderNode('INFRASTRUCTURE')}
+              </div>
+
+              <div className="edduu-flow-connector" />
+
+              <div className="edduu-architecture-row edduu-architecture-row-center">
+                {renderNode('RESULT')}
+              </div>
+
             </div>
 
-            {(activeNode === 'TOOL' || activeNode === 'RAG') && (
-              <p className="edduu-system-detail">{nodeDetails[activeNode]}</p>
+            {activeNode && (
+              <div className="edduu-architecture-detail">
+                <span className="edduu-architecture-detail-label">
+                  {activeNode}
+                </span>
+
+                <p>
+                  {nodeDetails[activeNode]}
+                </p>
+              </div>
             )}
 
-            <div className="edduu-system-line" />
-
-            <button
-              type="button"
-              className={nodeClass('LLM')}
-              onClick={() => toggleNode('LLM')}
-            >
-              LLM
-            </button>
-
-            {activeNode === 'LLM' && <p className="edduu-system-detail">{nodeDetails.LLM}</p>}
-
-            <div className="edduu-system-line" />
-
-            <button
-              type="button"
-              className={nodeClass('ANSWER')}
-              onClick={() => toggleNode('ANSWER')}
-            >
-              ANSWER
-            </button>
-
-            {activeNode === 'ANSWER' && <p className="edduu-system-detail">{nodeDetails.ANSWER}</p>}
           </div>
 
-          <p className="edduu-hero-system-hint">Click any component to explore.</p>
+          <p className="edduu-hero-system-hint">
+            Click any component to explore.
+          </p>
         </div>
+
       </div>
     </section>
   )
 }
 
 export default Hero
+

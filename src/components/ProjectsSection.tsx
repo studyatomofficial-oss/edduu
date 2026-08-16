@@ -14,7 +14,7 @@ function ProjectsSection() {
 
           <p className="edduu-section-description">
             Explore systems that connect technology, architecture and
-            real-world engineering decisions—not isolated tutorials or
+            real-world engineering decisionsâ€”not isolated tutorials or
             disconnected demos.
           </p>
         </div>

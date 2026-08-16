@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   font-family:
     Inter,
     ui-sans-serif,
@@ -103,3 +103,18 @@ img {
   background: #dbeafe;
   color: #1e3a8a;
 }
+
+/* EDDUU MODERN ACCENT COLORS */
+
+:root {
+  --edduu-electric-blue: #2563EB;
+  --edduu-cyan: #0891B2;
+  --edduu-amber: #D97706;
+  --edduu-coral-soft: #E76F51;
+
+  --edduu-blue-soft: #EFF6FF;
+  --edduu-cyan-soft: #ECFEFF;
+  --edduu-amber-soft: #FFFBEB;
+  --edduu-coral-soft-bg: #FFF4F1;
+}
+

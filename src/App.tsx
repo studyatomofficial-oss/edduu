@@ -5,13 +5,25 @@ import Hero from './components/Hero'
 import WhatIsEDDUU from './components/WhatIsEDDUU'
 import ExperienceDemo from './components/ExperienceDemo'
 import TechnologyUniverse from './components/TechnologyUniverse'
+import TechnologyUniversePage from './components/TechnologyUniversePage'
 import ProjectsSection from './components/ProjectsSection'
 import ProjectDetailShell from './components/ProjectDetailShell'
+import KnowledgePage from './components/KnowledgePage'
+import RAGAdvanced from './pages/RAGAdvanced'
 import LearningLabShell from './engine/LearningLabShell'
+import AvinashPage from './components/AvinashPage'
 import { getProjectBySlug } from './data/projects'
 import { getTechnologyBySlug } from './data/technologies'
 import { getExperienceById } from './data/experiences'
+import { getKnowledgeBySlug } from './data/knowledge'
 
+function resolveAvinashHash(hash: string) {
+  return hash === '#avinash'
+}
+
+function resolveTechnologyUniverseHash(hash: string) {
+  return hash === '#technologies'
+}
 function resolveLabHash(hash: string) {
   if (hash === '#lab' || hash === '#lab/') {
     return {
@@ -33,8 +45,28 @@ function resolveLabHash(hash: string) {
   return {
     slug,
     technology,
-    kind: technology?.experienceId ? 'lab' : 'coming-soon',
+    kind: (technology?.experienceId ? 'lab' : 'coming-soon') as AppState['kind'],
   }
+}
+
+
+function resolveAdvancedHash(hash: string) {
+  const match = /^#advanced\/(.+)$/.exec(hash)
+
+  if (!match) {
+    return null
+  }
+
+  return match[1] === 'rag' ? 'rag' : null
+}
+function resolveKnowledgeHash(hash: string) {
+  const match = /^#knowledge\/(.+)$/.exec(hash)
+
+  if (!match) {
+    return null
+  }
+
+  return getKnowledgeBySlug(match[1]) ?? null
 }
 
 function resolveProjectHash(hash: string) {
@@ -47,72 +79,108 @@ function resolveProjectHash(hash: string) {
   return getProjectBySlug(match[1])
 }
 
+type AppState = {
+  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'technology-universe' | 'avinash'
+  technology: NonNullable<ReturnType<typeof getTechnologyBySlug>> | null
+  experience: NonNullable<ReturnType<typeof getExperienceById>> | null
+  project: NonNullable<ReturnType<typeof getProjectBySlug>> | null
+  knowledge: NonNullable<ReturnType<typeof getKnowledgeBySlug>> | null
+}
+
+function createHomeState(): AppState {
+  return {
+    kind: 'home',
+    technology: null,
+    experience: null,
+    project: null,
+    knowledge: null,
+  }
+}
+
+function resolveAppState(hash: string): AppState {
+  if (resolveAvinashHash(hash)) {
+    return {
+      kind: 'avinash',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+    }
+  }
+
+  if (resolveTechnologyUniverseHash(hash)) {
+    return {
+      kind: 'technology-universe',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+    }
+  }
+  const resolvedLab = resolveLabHash(hash)
+
+  if (resolvedLab) {
+    const experience =
+      resolvedLab.technology?.experienceId
+        ? getExperienceById(resolvedLab.technology.experienceId)
+        : null
+
+    return {
+      kind: resolvedLab.kind as AppState['kind'],
+      technology: resolvedLab.technology ?? null,
+      experience,
+      project: null,
+      knowledge: null,
+    }
+  }
+
+  const advanced = resolveAdvancedHash(hash)
+
+  if (advanced) {
+    return {
+      kind: 'advanced',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+    }
+  }
+
+  const knowledge = resolveKnowledgeHash(hash)
+
+  if (knowledge) {
+    return {
+      kind: 'knowledge',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge,
+    }
+  }
+
+  const project = resolveProjectHash(hash)
+
+  if (project) {
+    return {
+      kind: 'project',
+      technology: null,
+      experience: null,
+      project,
+      knowledge: null,
+    }
+  }
+
+  return createHomeState()
+}
+
 function App() {
-  const [state, setState] = useState(() => {
-    const resolvedLab = resolveLabHash(window.location.hash)
-
-    if (resolvedLab) {
-      const experience =
-        resolvedLab.technology?.experienceId
-          ? getExperienceById(resolvedLab.technology.experienceId)
-          : null
-
-      return {
-        kind: resolvedLab.kind,
-        technology: resolvedLab.technology,
-        experience,
-        project: null,
-      }
-    }
-
-    const project = resolveProjectHash(window.location.hash)
-
-    if (project) {
-      return {
-        kind: 'project' as const,
-        technology: null,
-        experience: null,
-        project,
-      }
-    }
-
-    return { kind: 'home' as const, technology: null, experience: null, project: null }
-  })
+  const [state, setState] = useState<AppState>(() =>
+    resolveAppState(window.location.hash),
+  )
 
   useEffect(() => {
     const handleHashChange = () => {
-      const resolvedLab = resolveLabHash(window.location.hash)
-
-      if (resolvedLab) {
-        const experience =
-          resolvedLab.technology?.experienceId
-            ? getExperienceById(resolvedLab.technology.experienceId)
-            : null
-
-        setState({
-          kind: resolvedLab.kind,
-          technology: resolvedLab.technology,
-          experience,
-          project: null,
-        })
-
-        return
-      }
-
-      const project = resolveProjectHash(window.location.hash)
-
-      if (project) {
-        setState({
-          kind: 'project',
-          technology: null,
-          experience: null,
-          project,
-        })
-
-        return
-      }
-
-      setState({ kind: 'home', technology: null, experience: null, project: null })
+      setState(resolveAppState(window.location.hash))
     }
 
     window.addEventListener('hashchange', handleHashChange)
@@ -121,7 +189,27 @@ function App() {
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
+  if (state.kind === 'avinash') {
+    return (
+      <>
+        <Navbar />
+        <main id="avinash">
+          <AvinashPage />
+        </main>
+      </>
+    )
+  }
 
+  if (state.kind === 'technology-universe') {
+    return (
+      <>
+        <Navbar />
+        <main id="technologies">
+          <TechnologyUniversePage />
+        </main>
+      </>
+    )
+  }
   if (state.kind === 'lab' && state.experience) {
     return (
       <>
@@ -145,6 +233,28 @@ function App() {
               <p className="edduu-section-description">Coming Soon.</p>
             </div>
           </section>
+        </main>
+      </>
+    )
+  }
+
+
+  if (state.kind === 'advanced') {
+    return (
+      <>
+        <Navbar />
+        <main id="advanced">
+          <RAGAdvanced />
+        </main>
+      </>
+    )
+  }
+  if (state.kind === 'knowledge' && state.knowledge) {
+    return (
+      <>
+        <Navbar />
+        <main id="knowledge">
+          <KnowledgePage knowledge={state.knowledge} />
         </main>
       </>
     )
@@ -174,3 +284,20 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
