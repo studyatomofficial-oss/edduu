@@ -1,5 +1,6 @@
 import { technologyById } from '../data/technologies'
 import type { ProjectDefinition } from '../types/learning'
+import { getTechnologyPrimaryHref } from '../utils/technologyRouting'
 
 type ProjectDetailShellProps = {
   project: ProjectDefinition
@@ -44,8 +45,10 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
                   .filter((component) => component.techId === technology.id)
                   .map((component) => component.label)
 
-                const techName = technology.experienceId ? (
-                  <a href={`#lab/${technology.slug}`} className="edduu-project-tech-name edduu-project-link">
+                const techHref = getTechnologyPrimaryHref(technology.slug)
+
+                const techName = techHref ? (
+                  <a href={techHref} className="edduu-project-tech-name edduu-project-link">
                     {technology.name}
                   </a>
                 ) : (
@@ -56,8 +59,8 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
                   <li key={technology.id} className="edduu-project-tech-item">
                     <div className="edduu-project-tech-header">
                       {techName}
-                      {technology.experienceId ? (
-                        <a href={`#lab/${technology.slug}`} className="edduu-project-link">
+                      {techHref ? (
+                  <a href={techHref} className="edduu-project-link">
                           Learn this →
                         </a>
                       ) : (
@@ -126,7 +129,7 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
                     <p>
                       <strong>Mitigation:</strong>{' '}
                       {relatedTechnology?.experienceId ? (
-                        <a href={`#lab/${relatedTechnology.slug}`} className="edduu-project-link">
+                        <a href={getTechnologyPrimaryHref(relatedTechnology.slug) ?? '#technologies'} className="edduu-project-link">
                           Review {relatedTechnology.name}
                         </a>
                       ) : (
@@ -156,3 +159,7 @@ function ProjectDetailShell({ project }: ProjectDetailShellProps) {
 }
 
 export default ProjectDetailShell
+
+
+
+

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -10,6 +10,7 @@ import ProjectsSection from './components/ProjectsSection'
 import ProjectDetailShell from './components/ProjectDetailShell'
 import KnowledgePage from './components/KnowledgePage'
 import RAGAdvanced from './pages/RAGAdvanced'
+import RedisAdvanced from './pages/RedisAdvanced'
 import LearningLabShell from './engine/LearningLabShell'
 import AvinashPage from './components/AvinashPage'
 import { getProjectBySlug } from './data/projects'
@@ -57,7 +58,7 @@ function resolveAdvancedHash(hash: string) {
     return null
   }
 
-  return match[1] === 'rag' ? 'rag' : null
+  return match[1]
 }
 function resolveKnowledgeHash(hash: string) {
   const match = /^#knowledge\/(.+)$/.exec(hash)
@@ -85,6 +86,7 @@ type AppState = {
   experience: NonNullable<ReturnType<typeof getExperienceById>> | null
   project: NonNullable<ReturnType<typeof getProjectBySlug>> | null
   knowledge: NonNullable<ReturnType<typeof getKnowledgeBySlug>> | null
+  advancedSlug: string | null
 }
 
 function createHomeState(): AppState {
@@ -94,6 +96,7 @@ function createHomeState(): AppState {
     experience: null,
     project: null,
     knowledge: null,
+    advancedSlug: null,
   }
 }
 
@@ -105,6 +108,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      advancedSlug: null,
     }
   }
 
@@ -115,6 +119,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      advancedSlug: null,
     }
   }
   const resolvedLab = resolveLabHash(hash)
@@ -131,6 +136,7 @@ function resolveAppState(hash: string): AppState {
       experience,
       project: null,
       knowledge: null,
+      advancedSlug: null,
     }
   }
 
@@ -143,6 +149,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      advancedSlug: advanced,
     }
   }
 
@@ -155,6 +162,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge,
+      advancedSlug: null,
     }
   }
 
@@ -167,6 +175,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project,
       knowledge: null,
+      advancedSlug: null,
     }
   }
 
@@ -244,7 +253,11 @@ function App() {
       <>
         <Navbar />
         <main id="advanced">
-          <RAGAdvanced />
+          {state.advancedSlug === 'redis' ? (
+            <RedisAdvanced />
+          ) : (
+            <RAGAdvanced />
+          )}
         </main>
       </>
     )
@@ -284,6 +297,12 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
 
 
 

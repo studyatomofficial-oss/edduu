@@ -1,5 +1,14 @@
-﻿function RAGAdvanced() {
-  const sections = [
+﻿import type { AdvancedDefinition } from './types'
+
+export const ragAdvanced: AdvancedDefinition = {
+  technologyId: 'rag',
+  slug: 'rag',
+  eyebrow: 'RAG ADVANCED',
+  title: 'Build It in the Real World',
+  summary:
+    'A universal implementation guide for understanding how a real RAG system is designed, assembled, evaluated, and operated in production.',
+
+  sections: [
     {
       id: 'problem',
       step: '01',
@@ -9,6 +18,7 @@
         'The engineering goal is not simply to connect a vector database to an LLM. The goal is to build a reliable information pipeline that can find useful evidence and give that evidence to the model at answer time.',
       ],
     },
+
     {
       id: 'architecture',
       step: '02',
@@ -29,6 +39,7 @@
         'Answer',
       ],
     },
+
     {
       id: 'documents',
       step: '03',
@@ -44,6 +55,7 @@
         ['Chunking', 'Divide content into retrieval-friendly pieces with enough context to remain useful.'],
       ],
     },
+
     {
       id: 'embeddings',
       step: '04',
@@ -58,6 +70,7 @@
         ['Vector store', 'Stores representations and supports similarity-oriented retrieval.'],
       ],
     },
+
     {
       id: 'retrieval',
       step: '05',
@@ -73,6 +86,7 @@
         ['Reranking', 'Optionally improve ordering by applying a stronger relevance assessment.'],
       ],
     },
+
     {
       id: 'context',
       step: '06',
@@ -82,6 +96,7 @@
         'The application decides what evidence is included, how it is ordered, how duplicates are handled, and how much context the model should receive.',
       ],
     },
+
     {
       id: 'generation',
       step: '07',
@@ -91,6 +106,7 @@
         'The model is still responsible for generation. RAG does not make the model automatically correct; it gives the model relevant external evidence to work with.',
       ],
     },
+
     {
       id: 'production',
       step: '08',
@@ -111,6 +127,7 @@
         'Evaluation',
       ],
     },
+
     {
       id: 'tools',
       step: '09',
@@ -121,6 +138,7 @@
         'The important engineering skill is understanding the responsibility of each layer rather than memorising one vendor-specific implementation.',
       ],
     },
+
     {
       id: 'verify',
       step: '10',
@@ -135,140 +153,7 @@
         ['Regression evaluation', 'Does a change in chunking, retrieval, models, or prompts improve rather than silently damage quality?'],
       ],
     },
-  ]
-
-  return (
-    <section className="edduu-advanced-page">
-      <div className="edduu-container">
-        <header className="edduu-advanced-header">
-          <p className="edduu-advanced-eyebrow">RAG ADVANCED</p>
-          <h1 className="edduu-advanced-title">
-            Build It in the Real World
-          </h1>
-          <p className="edduu-advanced-summary">
-            A universal implementation guide for understanding how a real RAG
-            system is designed, assembled, evaluated, and operated in production.
-          </p>
-
-          <nav className="edduu-advanced-nav" aria-label="RAG guide sections">
-            {sections.map((section) => (
-              <a
-                key={section.id}
-                href="#advanced/rag"
-                onClick={(event) => {
-                  event.preventDefault()
-
-                  document.getElementById(section.id)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  })
-                }}
-              >
-                {section.step} · {section.title}
-              </a>
-            ))}
-          </nav>
-        </header>
-
-        <div className="edduu-advanced-layout">
-          <main className="edduu-advanced-content">
-            {sections.map((section, index) => (
-              <article
-                key={section.id}
-                id={section.id}
-                className={`edduu-advanced-section ${
-                  index === sections.length - 1 ? 'edduu-advanced-final' : ''
-                }`}
-              >
-                <p className="edduu-advanced-step">
-                  {section.step} — IMPLEMENTATION
-                </p>
-
-                <h2>{section.title}</h2>
-
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-
-                {section.flow && (
-                  <div className="edduu-advanced-flow">
-                    {section.flow.map((item, flowIndex) => (
-                      <span key={item}>
-                        {item}
-                        {flowIndex < section.flow.length - 1 ? ' →' : ''}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {section.items && (
-                  <div className="edduu-advanced-grid">
-                    {section.items.map(([title, description]) => (
-                      <div key={title}>
-                        <strong>{title}</strong>
-                        <p>{description}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {section.production && (
-                  <div className="edduu-advanced-production">
-                    {section.production.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </div>
-                )}
-
-                {section.id === 'verify' && (
-                  <strong>
-                    The final question is simple: can the system reliably turn
-                    the right knowledge into a useful, grounded answer?
-                  </strong>
-                )}
-              </article>
-            ))}
-          </main>
-
-          <aside className="edduu-advanced-sidebar">
-            <strong>RAG navigation</strong>
-
-            {sections.map((section) => (
-              <a
-                key={section.id}
-                href="#advanced/rag"
-                onClick={(event) => {
-                  event.preventDefault()
-
-                  document.getElementById(section.id)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  })
-                }}
-              >
-                {section.step} — {section.title}
-              </a>
-            ))}
-
-            <div className="edduu-advanced-sidebar-divider" />
-
-            <a className="edduu-advanced-lab-link" href="#lab/rag">
-              Enter RAG Lab →
-            </a>
-
-            <a href="#knowledge/rag">
-              Back to RAG Knowledge →
-            </a>
-          </aside>
-        </div>
-      </div>
-    </section>
-  )
+  ],
 }
 
-export default RAGAdvanced
-
-
-
-
-
+export default ragAdvanced

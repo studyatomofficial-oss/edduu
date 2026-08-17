@@ -1,4 +1,5 @@
 ﻿import { technologyById } from '../data/technologies'
+import { getAdvancedBySlug } from '../data/advanced'
 import type { KnowledgeDefinition } from '../data/knowledge'
 
 type KnowledgePageProps = {
@@ -7,6 +8,7 @@ type KnowledgePageProps = {
 
 function KnowledgePage({ knowledge }: KnowledgePageProps) {
   const technology = technologyById.get(knowledge.technologyId)
+  const advanced = getAdvancedBySlug(knowledge.slug)
 
   const relatedTechnologies = (knowledge.relatedTechnologyIds ?? [])
     .map((technologyId) => technologyById.get(technologyId))
@@ -38,11 +40,9 @@ function KnowledgePage({ knowledge }: KnowledgePageProps) {
           </div>
 
           <div className="edduu-knowledge-meta">
-            <span>{knowledge.difficulty}</span>
-
-            {technology?.slug === 'rag' ? (
+            {advanced ? (
               <a
-                href="#advanced/rag"
+                href={`#advanced/${advanced.slug}`}
                 className="edduu-knowledge-advanced-link"
               >
                 Advanced
@@ -98,6 +98,12 @@ function KnowledgePage({ knowledge }: KnowledgePageProps) {
 }
 
 export default KnowledgePage
+
+
+
+
+
+
 
 
 

@@ -1,8 +1,9 @@
-import { modules } from '../data/modules'
+﻿import { modules } from '../data/modules'
 import {
   homepageTechnologySlugs,
   technologies,
 } from '../data/technologies'
+import { getTechnologyPrimaryHref } from '../utils/technologyRouting'
 
 const legacyHomepageSlugMap: Record<string, string> = {
   genai: 'Generative AI',
@@ -47,6 +48,7 @@ const technologyGroups = modules
         label: technology.shortName ?? technology.name,
         slug: technology.slug,
         experienceId: technology.experienceId,
+        href: getTechnologyPrimaryHref(technology.slug),
       }))
 
     return {
@@ -88,14 +90,14 @@ function TechnologyUniverse() {
                     </span>
                   )
 
-                  if (!item.experienceId) {
+                  if (!item.href) {
                     return <span key={item.slug}>{content}</span>
                   }
 
                   return (
                     <a
                       key={item.slug}
-                      href={`#lab/${item.slug}`}
+                      href={item.href}
                       className="edduu-technology-pill edduu-technology-pill-link"
                     >
                       {item.label}
@@ -114,7 +116,7 @@ function TechnologyUniverse() {
           </p>
 
           <a href="#technologies" className="edduu-button edduu-button-primary">
-            Explore All Technologies →
+            Explore All Technologies {'\u2192'}
           </a>
         </div>
       </div>
@@ -123,5 +125,10 @@ function TechnologyUniverse() {
 }
 
 export default TechnologyUniverse
+
+
+
+
+
 
 

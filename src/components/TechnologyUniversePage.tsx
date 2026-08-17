@@ -1,5 +1,6 @@
 ﻿import { technologyDomains } from '../data/technologyDomains'
 import { technologies } from '../data/technologies'
+import { getTechnologyPrimaryHref } from '../utils/technologyRouting'
 
 function TechnologyUniversePage() {
   return (
@@ -56,11 +57,13 @@ function TechnologyUniversePage() {
                         </span>
                       )
 
-                      if (technology.experienceId) {
+                      const href = getTechnologyPrimaryHref(technology.slug)
+
+                      if (href) {
                         return (
                           <a
                             key={technology.slug}
-                            href={`#lab/${technology.slug}`}
+                            href={href}
                             className="edduu-technology-pill edduu-technology-pill-link"
                           >
                             {technology.shortName ?? technology.name}
@@ -103,4 +106,10 @@ function TechnologyUniversePage() {
 }
 
 export default TechnologyUniversePage
+
+
+
+
+
+
 

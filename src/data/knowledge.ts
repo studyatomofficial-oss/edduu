@@ -1,5 +1,6 @@
-import type { Difficulty } from '../types/learning'
+﻿import type { Difficulty } from '../types/learning'
 import { ragKnowledge } from './ragKnowledge'
+import { redisKnowledge } from './redisKnowledge'
 
 export type KnowledgeSection = {
   title: string
@@ -18,6 +19,7 @@ export type KnowledgeDefinition = {
 
 export const knowledgeEntries: KnowledgeDefinition[] = [
   ragKnowledge,
+  redisKnowledge,
 ]
 
 export const knowledgeBySlug = new Map(
@@ -29,4 +31,7 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
 
