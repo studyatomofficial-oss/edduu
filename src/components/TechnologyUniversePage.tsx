@@ -25,8 +25,8 @@ function TechnologyUniversePage() {
 
         <div className="edduu-technology-universe-page-grid">
           {technologyDomains.map((domain) => {
-            const domainTechnologies = technologies.filter((technology) =>
-              domain.moduleIds.includes(technology.moduleId),
+            const domainTechnologies = technologies.filter(
+              (technology) => technology.domainId === domain.id,
             )
 
             return (
@@ -106,6 +106,7 @@ function TechnologyUniversePage() {
 }
 
 export default TechnologyUniversePage
+
 
 
 
