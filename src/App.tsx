@@ -7,6 +7,7 @@ import ExperienceDemo from './components/ExperienceDemo'
 import TechnologyUniverse from './components/TechnologyUniverse'
 import TechnologyUniversePage from './components/TechnologyUniversePage'
 import ProjectsSection from './components/ProjectsSection'
+import AllProjectsPage from './components/AllProjectsPage'
 import ProjectDetailShell from './components/ProjectDetailShell'
 import KnowledgePage from './components/KnowledgePage'
 import RAGAdvanced from './pages/RAGAdvanced'
@@ -22,6 +23,9 @@ function resolveAvinashHash(hash: string) {
   return hash === '#avinash'
 }
 
+function resolveProjectsHash(hash: string) {
+  return hash === '#projects'
+}
 function resolveTechnologyUniverseHash(hash: string) {
   return hash === '#technologies'
 }
@@ -81,7 +85,7 @@ function resolveProjectHash(hash: string) {
 }
 
 type AppState = {
-  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'technology-universe' | 'avinash'
+  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'projects' | 'technology-universe' | 'avinash'
   technology: NonNullable<ReturnType<typeof getTechnologyBySlug>> | null
   experience: NonNullable<ReturnType<typeof getExperienceById>> | null
   project: NonNullable<ReturnType<typeof getProjectBySlug>> | null
@@ -112,6 +116,16 @@ function resolveAppState(hash: string): AppState {
     }
   }
 
+  if (resolveProjectsHash(hash)) {
+    return {
+      kind: 'projects',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+      advancedSlug: null,
+    }
+  }
   if (resolveTechnologyUniverseHash(hash)) {
     return {
       kind: 'technology-universe',
@@ -248,6 +262,14 @@ function App() {
   }
 
 
+  if (state.kind === 'projects') {
+    return (
+      <main id="projects">
+        <Navbar />
+        <AllProjectsPage />
+      </main>
+    )
+  }
   if (state.kind === 'advanced') {
     return (
       <>
@@ -297,26 +319,4 @@ function App() {
 }
 
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,22 +1,26 @@
-import { projects } from '../data/projects'
+﻿import { projects } from '../data/projects'
 import ProjectCard from './ProjectCard'
-function ProjectsSection() {
+
+function AllProjectsPage() {
   return (
-    <section className="edduu-section edduu-projects">
+    <section className="edduu-projects edduu-all-projects-page">
       <div className="edduu-container">
         <div className="edduu-projects-header">
           <p className="edduu-section-eyebrow">What I Build</p>
-          <h2 className="edduu-section-title">
+
+          <h1 className="edduu-section-title">
             Real systems. Practical AI. Production thinking.
-          </h2>
+          </h1>
+
           <p className="edduu-section-description">
-            Explore systems that connect technology, architecture and
-            real-world engineering decisions—not isolated tutorials or
-            disconnected demos.
+            Explore the complete EDDUU project universe—systems designed to
+            connect technology, architecture, engineering decisions, and
+            real-world production thinking.
           </p>
         </div>
+
         <div className="edduu-projects-grid">
-          {projects.slice(0, 3).map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
               number={String(index + 1).padStart(2, '0')}
@@ -28,20 +32,19 @@ function ProjectsSection() {
             />
           ))}
         </div>
+
         <div className="edduu-projects-footer">
-          <p className="edduu-projects-footer-copy">
-            These are just a few systems I've built to explore how technology
-            becomes real-world products.
-          </p>
-          <a
-            href="#projects"
-            className="edduu-button edduu-button-primary"
-          >
-            Explore All Projects →
+          <a href="/" className="edduu-button edduu-button-secondary">
+            ← Back to EDDUU
+          </a>
+
+          <a href="#avinash" className="edduu-button edduu-button-primary">
+            Meet Avinash →
           </a>
         </div>
       </div>
     </section>
   )
 }
-export default ProjectsSection
+
+export default AllProjectsPage
