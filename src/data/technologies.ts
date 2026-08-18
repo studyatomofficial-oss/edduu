@@ -6,6 +6,7 @@ import { cloudTechnologies } from './technologies/cloud'
 import { devopsTechnologies } from './technologies/devops'
 import { systemTechnologies } from './technologies/systems'
 import { reliabilityTechnologies } from './technologies/reliability'
+import { securityTechnologies } from './technologies/security'
 import { engineeringTechnologies } from './technologies/engineering'
 import type { TechnologyDefinition } from './technologies/types'
 
@@ -20,6 +21,7 @@ export const technologies: TechnologyDefinition[] = [
   ...devopsTechnologies,
   ...systemTechnologies,
   ...reliabilityTechnologies,
+  ...securityTechnologies,
   ...engineeringTechnologies,
 ]
 
@@ -57,11 +59,4 @@ export const technologyById = new Map(
 export function getTechnologyBySlug(slug: string) {
   return technologyRegistry.get(slug)
 }
-
-
-
-
-
-
-
 
