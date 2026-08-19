@@ -1,4 +1,4 @@
-#root {
+﻿#root {
   min-height: 100vh;
 }
 
@@ -768,8 +768,8 @@
   }
 }
 /* =========================================================
-   EDDUU — LEADERSHIP LENS
-   STEP 5G — VISUAL IMPLEMENTATION
+   EDDUU â€” LEADERSHIP LENS
+   STEP 5G â€” VISUAL IMPLEMENTATION
    ========================================================= */
 
 .edduu-leadership {
@@ -1207,7 +1207,7 @@
 }
 
 /* =========================================================
-   WHAT IS EDDUU — Step 7.11
+   WHAT IS EDDUU â€” Step 7.11
    ========================================================= */
 
 .edduu-what-is {
@@ -2212,7 +2212,7 @@
   }
 }
 
-/* Homepage composition — compact front door */
+/* Homepage composition â€” compact front door */
 .edduu-hero { padding: 72px 0 64px; }
 .edduu-hero-grid { gap: 56px; }
 .edduu-what-is { padding: 46px 0; }
@@ -2343,7 +2343,7 @@
 @media (prefers-reduced-motion: reduce) { .edduu-system-node.is-active, .edduu-system-detail, .edduu-system-line::before { animation: none; } }
 
 /* =========================================================
-   EDDUU � PROJECT DETAIL
+   EDDUU ï¿½ PROJECT DETAIL
    ========================================================= */
 
 .edduu-project-detail {
@@ -2605,7 +2605,7 @@
 }
 
 /* ---------------------------------------------------------
-   Lists � Failure / Production
+   Lists ï¿½ Failure / Production
    --------------------------------------------------------- */
 
 .edduu-project-list {
@@ -2810,6 +2810,16 @@
   margin-bottom: 0;
 }
 
+.edduu-knowledge-section-number {
+  display: inline-block;
+  margin-right: 12px;
+  color: var(--edduu-ai);
+  font-size: 0.68em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  vertical-align: 0.08em;
+  opacity: 0.85;
+}
 .edduu-knowledge-section h2 {
   margin: 0 0 18px;
   color: var(--edduu-text);
@@ -2818,6 +2828,53 @@
   letter-spacing: -0.025em;
 }
 
+.edduu-knowledge-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 28px;
+  margin-top: 26px;
+}
+
+.edduu-knowledge-highlight {
+  padding: 16px 0;
+  border-top: 1px solid var(--edduu-border);
+  transition: transform 160ms ease;
+}
+
+.edduu-knowledge-highlight strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--edduu-text);
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
+.edduu-knowledge-highlight span {
+  display: block;
+  color: var(--edduu-text-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.edduu-knowledge-highlight:hover {
+  transform: translateX(3px);
+}
+
+@media (max-width: 700px) {
+  .edduu-knowledge-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edduu-knowledge-highlight {
+    transition: none;
+  }
+
+  .edduu-knowledge-highlight:hover {
+    transform: none;
+  }
+}
 .edduu-knowledge-section p {
   max-width: 850px;
   margin: 0;
@@ -2928,7 +2985,7 @@
 }
 
 /* =========================================================
-   RAG ADVANCED ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â BUILD IT IN THE REAL WORLD
+   RAG ADVANCED ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â BUILD IT IN THE REAL WORLD
    ========================================================= */
 
 .edduu-advanced-page {
@@ -3297,7 +3354,7 @@
 
 
 /* =========================================================
-   EDDUU Ã¢â‚¬â€ TECHNOLOGY UNIVERSE PREMIUM UI
+   EDDUU ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â TECHNOLOGY UNIVERSE PREMIUM UI
    Presentation-only layer.
    Existing routing and data architecture remain untouched.
    ========================================================= */
@@ -3524,7 +3581,7 @@
 
 /* =========================================================
    EDDUU PREMIUM MOTION SYSTEM
-   Subtle motion only Ã¢â‚¬â€ no distracting animations.
+   Subtle motion only ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â no distracting animations.
    ========================================================= */
 
 :root {
@@ -4050,7 +4107,7 @@
 /* EDDUU TOP 3 VISUAL POLISH v2 */
 
 /* =========================================================
-   HERO Ã¢â‚¬â€ STRONGER DESKTOP COMPOSITION
+   HERO ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â STRONGER DESKTOP COMPOSITION
    ========================================================= */
 
 .edduu-hero-title {
@@ -4141,7 +4198,7 @@
 
 
 /* =========================================================
-   EDDUU APPROACH Ã¢â‚¬â€ FOUR PRINCIPLE CARDS
+   EDDUU APPROACH ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â FOUR PRINCIPLE CARDS
    ========================================================= */
 
 .edduu-what-is {
@@ -4297,7 +4354,7 @@
 
 
 /* =========================================================
-   HOW EDDUU WORKS Ã¢â‚¬â€ FLOW
+   HOW EDDUU WORKS ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â FLOW
    ========================================================= */
 
 .edduu-experience {
@@ -4979,7 +5036,7 @@
 }
 
 
-/* EDDUU SECTION 3 Ã¢â‚¬â€ THE SHIFT v1 */
+/* EDDUU SECTION 3 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â THE SHIFT v1 */
 
 .edduu-shift-section {
   position: relative;
@@ -5996,7 +6053,7 @@
 
  
 /* =========================================================
-   AVINASH PAGE Ã¢â‚¬â€ EXECUTIVE UI/UX OVERRIDE
+   AVINASH PAGE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â EXECUTIVE UI/UX OVERRIDE
    ========================================================= */
 
 /* ---------- PAGE RHYTHM ---------- */
@@ -6458,7 +6515,7 @@
 
 
 /* =========================================================
-   AVINASH Ã¢â‚¬â€ OPERATING RANGE
+   AVINASH ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â OPERATING RANGE
    ========================================================= */
 
 .edduu-avinash-operating {
@@ -6791,7 +6848,7 @@
 
 
 /* =========================================================
-   AVINASH Ã¢â‚¬â€ SIGNATURE PROGRAMS
+   AVINASH ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â SIGNATURE PROGRAMS
    Responsive executive case-study layout
    ========================================================= */
 
@@ -7023,7 +7080,7 @@
 }
 
 /* =========================================================
-   AVINASH Ã¢â‚¬â€ REFERENCE VISUAL FOUNDATION
+   AVINASH ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â REFERENCE VISUAL FOUNDATION
    ========================================================= */
 
 .edduu-avinash-page {
@@ -7195,7 +7252,7 @@
 
 
 /* =========================================================
-   AVINASH HERO Ã¢â‚¬â€ FLIGHT LOG / INSTRUMENT PANEL
+   AVINASH HERO ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â FLIGHT LOG / INSTRUMENT PANEL
    Reference-inspired responsive override
    ========================================================= */
 
@@ -7840,7 +7897,7 @@
 }
 
 /* =========================================================
-   AVINASH PAGE Ã¢â‚¬â€ FINAL RESPONSIVE SYSTEM
+   AVINASH PAGE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â FINAL RESPONSIVE SYSTEM
    Desktop + Tablet + Mobile
    ========================================================= */
 
@@ -8814,3 +8871,6 @@
   }
 
 }
+
+
+

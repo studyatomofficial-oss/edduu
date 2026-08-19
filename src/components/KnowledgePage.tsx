@@ -67,8 +67,28 @@ function KnowledgePage({ knowledge }: KnowledgePageProps) {
                 key={`${section.title}-${index}`}
                 className="edduu-knowledge-section"
               >
-                <h2>{section.title}</h2>
+                <h2>
+                  <span className="edduu-knowledge-section-number">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{section.title}</span>
+                </h2>
+
                 <p>{section.content}</p>
+
+                {section.highlights?.length ? (
+                  <div className="edduu-knowledge-highlights">
+                    {section.highlights.map((highlight) => (
+                      <div
+                        key={highlight.title}
+                        className="edduu-knowledge-highlight"
+                      >
+                        <strong>{highlight.title}</strong>
+                        <span>{highlight.description}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
               </article>
             ))}
           </main>
@@ -98,6 +118,9 @@ function KnowledgePage({ knowledge }: KnowledgePageProps) {
 }
 
 export default KnowledgePage
+
+
+
 
 
 
