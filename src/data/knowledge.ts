@@ -1,6 +1,20 @@
 ﻿import type { Difficulty } from '../types/learning'
 import { ragKnowledge } from './ragKnowledge'
 import { redisKnowledge } from './redisKnowledge'
+import { dataKnowledge } from './dataKnowledge'
+import { postgresqlKnowledge } from './postgresqlKnowledge'
+import { mysqlKnowledge } from './mysqlKnowledge'
+import { mongodbKnowledge } from './mongodbKnowledge'
+import { sqliteKnowledge } from './sqliteKnowledge'
+import { mariadbKnowledge } from './mariadbKnowledge'
+import { oracleDatabaseKnowledge } from './oracleDatabaseKnowledge'
+import { sqlServerKnowledge } from './sqlServerKnowledge'
+import { elasticsearchKnowledge } from './elasticsearchKnowledge'
+import { cassandraKnowledge } from './cassandraKnowledge'
+import { dynamodbKnowledge } from './dynamodbKnowledge'
+import { neo4jKnowledge } from './neo4jKnowledge'
+import { clickhouseKnowledge } from './clickhouseKnowledge'
+import { snowflakeKnowledge } from './snowflakeKnowledge'
 import { aiKnowledge } from './aiKnowledge'
 import { genaiKnowledge } from './genaiKnowledge'
 import { llmsKnowledge } from './llmsKnowledge'
@@ -35,6 +49,21 @@ import { rabbitmqKnowledge } from './rabbitmqKnowledge'
 import { pulsarKnowledge } from './pulsarKnowledge'
 import { natsKnowledge } from './natsKnowledge'
 import { eventDrivenArchitectureKnowledge } from './eventDrivenArchitectureKnowledge'
+import { fullStackKnowledge } from './fullStackKnowledge'
+import { pythonKnowledge } from './pythonKnowledge'
+import { fastapiKnowledge } from './fastapiKnowledge'
+import { javascriptKnowledge } from './javascriptKnowledge'
+import { typescriptKnowledge } from './typescriptKnowledge'
+import { reactKnowledge } from './reactKnowledge'
+import { nodejsKnowledge } from './nodejsKnowledge'
+import { expressjsKnowledge } from './expressjsKnowledge'
+import { nextjsKnowledge } from './nextjsKnowledge'
+import { djangoKnowledge } from './djangoKnowledge'
+import { flaskKnowledge } from './flaskKnowledge'
+import { springBootKnowledge } from './springBootKnowledge'
+import { dotnetKnowledge } from './dotnetKnowledge'
+import { goKnowledge } from './goKnowledge'
+import { rustKnowledge } from './rustKnowledge'
 import { authenticationKnowledge } from './authenticationKnowledge'
 import { identityKnowledge } from './identityKnowledge'
 import { securityKnowledge } from './securityKnowledge'
@@ -75,6 +104,20 @@ export type KnowledgeDefinition = {
 export const knowledgeEntries: KnowledgeDefinition[] = [
   ragKnowledge,
   redisKnowledge,
+  dataKnowledge,
+  postgresqlKnowledge,
+  mysqlKnowledge,
+  mongodbKnowledge,
+  sqliteKnowledge,
+  mariadbKnowledge,
+  oracleDatabaseKnowledge,
+  sqlServerKnowledge,
+  elasticsearchKnowledge,
+  cassandraKnowledge,
+  dynamodbKnowledge,
+  neo4jKnowledge,
+  clickhouseKnowledge,
+  snowflakeKnowledge,
   aiKnowledge,
   genaiKnowledge,
   llmsKnowledge,
@@ -109,6 +152,21 @@ export const knowledgeEntries: KnowledgeDefinition[] = [
   pulsarKnowledge,
   natsKnowledge,
   eventDrivenArchitectureKnowledge,
+  fullStackKnowledge,
+  pythonKnowledge,
+  fastapiKnowledge,
+  javascriptKnowledge,
+  typescriptKnowledge,
+  reactKnowledge,
+  nodejsKnowledge,
+  expressjsKnowledge,
+  nextjsKnowledge,
+  djangoKnowledge,
+  flaskKnowledge,
+  springBootKnowledge,
+  dotnetKnowledge,
+  goKnowledge,
+  rustKnowledge,
   securityKnowledge,
   owaspKnowledge,
   zeroTrustKnowledge,
@@ -135,6 +193,34 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
