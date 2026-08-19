@@ -1,4 +1,19 @@
 ﻿import type { Difficulty } from '../types/learning'
+import { gitKnowledge } from './gitKnowledge'
+import { githubKnowledge } from './githubKnowledge'
+import { gitlabKnowledge } from './gitlabKnowledge'
+import { jenkinsKnowledge } from './jenkinsKnowledge'
+import { ciCdKnowledge } from './ciCdKnowledge'
+import { deploymentKnowledge } from './deploymentKnowledge'
+import { blueGreenDeploymentKnowledge } from './blueGreenDeploymentKnowledge'
+import { canaryDeploymentKnowledge } from './canaryDeploymentKnowledge'
+import { rollingDeploymentKnowledge } from './rollingDeploymentKnowledge'
+import { releaseManagementKnowledge } from './releaseManagementKnowledge'
+import { artifactManagementKnowledge } from './artifactManagementKnowledge'
+import { featureFlagsKnowledge } from './featureFlagsKnowledge'
+import { rollbackStrategyKnowledge } from './rollbackStrategyKnowledge'
+import { deploymentStrategyKnowledge } from './deploymentStrategyKnowledge'
+import { githubActionsKnowledge } from './githubActionsKnowledge'
 import { ragKnowledge } from './ragKnowledge'
 import { redisKnowledge } from './redisKnowledge'
 import { dataKnowledge } from './dataKnowledge'
@@ -182,6 +197,21 @@ export const knowledgeEntries: KnowledgeDefinition[] = [
   encryptionKnowledge,
   tlsKnowledge,
   secretsManagementKnowledge,
+  githubActionsKnowledge,
+  gitKnowledge,
+  githubKnowledge,
+  gitlabKnowledge,
+  jenkinsKnowledge,
+  ciCdKnowledge,
+  deploymentKnowledge,
+  blueGreenDeploymentKnowledge,
+  canaryDeploymentKnowledge,
+  rollingDeploymentKnowledge,
+  releaseManagementKnowledge,
+  artifactManagementKnowledge,
+  featureFlagsKnowledge,
+  rollbackStrategyKnowledge,
+  deploymentStrategyKnowledge,
 ]
 
 export const knowledgeBySlug = new Map(
@@ -193,6 +223,21 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
