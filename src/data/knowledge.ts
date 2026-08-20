@@ -1,4 +1,34 @@
 ﻿import type { Difficulty } from '../types/learning'
+import { cloudKnowledge } from './cloudKnowledge'
+import { dockerKnowledge } from './dockerKnowledge'
+import { kubernetesKnowledge } from './kubernetesKnowledge'
+import { awsKnowledge } from './awsKnowledge'
+import { azureKnowledge } from './azureKnowledge'
+import { googleCloudKnowledge } from './googleCloudKnowledge'
+import { terraformKnowledge } from './terraformKnowledge'
+import { ansibleKnowledge } from './ansibleKnowledge'
+import { helmKnowledge } from './helmKnowledge'
+import { serverlessKnowledge } from './serverlessKnowledge'
+import { ec2Knowledge } from './ec2Knowledge'
+import { s3Knowledge } from './s3Knowledge'
+import { lambdaKnowledge } from './lambdaKnowledge'
+import { cloudflareKnowledge } from './cloudflareKnowledge'
+import { nginxKnowledge } from './nginxKnowledge'
+import { systemsKnowledge } from './systemsKnowledge'
+import { systemDesignKnowledge } from './systemDesignKnowledge'
+import { distributedSystemsKnowledge } from './distributedSystemsKnowledge'
+import { microservicesKnowledge } from './microservicesKnowledge'
+import { monolithKnowledge } from './monolithKnowledge'
+import { eventDrivenSystemsKnowledge } from './eventDrivenSystemsKnowledge'
+import { scalabilityKnowledge } from './scalabilityKnowledge'
+import { loadBalancingKnowledge } from './loadBalancingKnowledge'
+import { cachingKnowledge } from './cachingKnowledge'
+import { queuesKnowledge } from './queuesKnowledge'
+import { consistencyKnowledge } from './consistencyKnowledge'
+import { availabilityKnowledge } from './availabilityKnowledge'
+import { faultToleranceKnowledge } from './faultToleranceKnowledge'
+import { highAvailabilityKnowledge } from './highAvailabilityKnowledge'
+import { capacityPlanningKnowledge } from './capacityPlanningKnowledge'
 import { gitKnowledge } from './gitKnowledge'
 import { githubKnowledge } from './githubKnowledge'
 import { gitlabKnowledge } from './gitlabKnowledge'
@@ -117,6 +147,36 @@ export type KnowledgeDefinition = {
 }
 
 export const knowledgeEntries: KnowledgeDefinition[] = [
+  cloudKnowledge,
+  dockerKnowledge,
+  kubernetesKnowledge,
+  awsKnowledge,
+  azureKnowledge,
+  googleCloudKnowledge,
+  terraformKnowledge,
+  ansibleKnowledge,
+  helmKnowledge,
+  serverlessKnowledge,
+  ec2Knowledge,
+  s3Knowledge,
+  lambdaKnowledge,
+  cloudflareKnowledge,
+  nginxKnowledge,
+  systemsKnowledge,
+  systemDesignKnowledge,
+  distributedSystemsKnowledge,
+  microservicesKnowledge,
+  monolithKnowledge,
+  eventDrivenSystemsKnowledge,
+  scalabilityKnowledge,
+  loadBalancingKnowledge,
+  cachingKnowledge,
+  queuesKnowledge,
+  consistencyKnowledge,
+  availabilityKnowledge,
+  faultToleranceKnowledge,
+  highAvailabilityKnowledge,
+  capacityPlanningKnowledge,
   ragKnowledge,
   redisKnowledge,
   dataKnowledge,
@@ -223,6 +283,36 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
