@@ -1,4 +1,19 @@
 ﻿import type { Difficulty } from '../types/learning'
+import { productionKnowledge } from './productionKnowledge'
+import { observabilityKnowledge } from './observabilityKnowledge'
+import { monitoringKnowledge } from './monitoringKnowledge'
+import { loggingKnowledge } from './loggingKnowledge'
+import { metricsKnowledge } from './metricsKnowledge'
+import { distributedTracingKnowledge } from './distributedTracingKnowledge'
+import { prometheusKnowledge } from './prometheusKnowledge'
+import { grafanaKnowledge } from './grafanaKnowledge'
+import { opentelemetryKnowledge } from './opentelemetryKnowledge'
+import { alertingKnowledge } from './alertingKnowledge'
+import { incidentManagementKnowledge } from './incidentManagementKnowledge'
+import { sliSloKnowledge } from './sliSloKnowledge'
+import { errorBudgetsKnowledge } from './errorBudgetsKnowledge'
+import { rootCauseAnalysisKnowledge } from './rootCauseAnalysisKnowledge'
+import { disasterRecoveryKnowledge } from './disasterRecoveryKnowledge'
 import { cloudKnowledge } from './cloudKnowledge'
 import { dockerKnowledge } from './dockerKnowledge'
 import { kubernetesKnowledge } from './kubernetesKnowledge'
@@ -177,6 +192,21 @@ export const knowledgeEntries: KnowledgeDefinition[] = [
   faultToleranceKnowledge,
   highAvailabilityKnowledge,
   capacityPlanningKnowledge,
+  productionKnowledge,
+  observabilityKnowledge,
+  monitoringKnowledge,
+  loggingKnowledge,
+  metricsKnowledge,
+  distributedTracingKnowledge,
+  prometheusKnowledge,
+  grafanaKnowledge,
+  opentelemetryKnowledge,
+  alertingKnowledge,
+  incidentManagementKnowledge,
+  sliSloKnowledge,
+  errorBudgetsKnowledge,
+  rootCauseAnalysisKnowledge,
+  disasterRecoveryKnowledge,
   ragKnowledge,
   redisKnowledge,
   dataKnowledge,
@@ -283,6 +313,21 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
