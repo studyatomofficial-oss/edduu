@@ -14,6 +14,21 @@ import { sliSloKnowledge } from './sliSloKnowledge'
 import { errorBudgetsKnowledge } from './errorBudgetsKnowledge'
 import { rootCauseAnalysisKnowledge } from './rootCauseAnalysisKnowledge'
 import { disasterRecoveryKnowledge } from './disasterRecoveryKnowledge'
+import { loopEngineeringKnowledge } from './loopEngineeringKnowledge'
+import { agileKnowledge } from './agileKnowledge'
+import { scrumKnowledge } from './scrumKnowledge'
+import { productManagementKnowledge } from './productManagementKnowledge'
+import { productRoadmapKnowledge } from './productRoadmapKnowledge'
+import { requirementsEngineeringKnowledge } from './requirementsEngineeringKnowledge'
+import { userStoriesKnowledge } from './userStoriesKnowledge'
+import { acceptanceCriteriaKnowledge } from './acceptanceCriteriaKnowledge'
+import { technicalDebtKnowledge } from './technicalDebtKnowledge'
+import { codeReviewKnowledge } from './codeReviewKnowledge'
+import { testingKnowledge } from './testingKnowledge'
+import { testAutomationKnowledge } from './testAutomationKnowledge'
+import { engineeringMetricsKnowledge } from './engineeringMetricsKnowledge'
+import { developerExperienceKnowledge } from './developerExperienceKnowledge'
+import { technicalProgramManagementKnowledge } from './technicalProgramManagementKnowledge'
 import { cloudKnowledge } from './cloudKnowledge'
 import { dockerKnowledge } from './dockerKnowledge'
 import { kubernetesKnowledge } from './kubernetesKnowledge'
@@ -207,6 +222,21 @@ export const knowledgeEntries: KnowledgeDefinition[] = [
   errorBudgetsKnowledge,
   rootCauseAnalysisKnowledge,
   disasterRecoveryKnowledge,
+  loopEngineeringKnowledge,
+  agileKnowledge,
+  scrumKnowledge,
+  productManagementKnowledge,
+  productRoadmapKnowledge,
+  requirementsEngineeringKnowledge,
+  userStoriesKnowledge,
+  acceptanceCriteriaKnowledge,
+  technicalDebtKnowledge,
+  codeReviewKnowledge,
+  testingKnowledge,
+  testAutomationKnowledge,
+  engineeringMetricsKnowledge,
+  developerExperienceKnowledge,
+  technicalProgramManagementKnowledge,
   ragKnowledge,
   redisKnowledge,
   dataKnowledge,
@@ -313,6 +343,21 @@ export function getKnowledgeBySlug(slug: string) {
 }
 
 export default knowledgeEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
