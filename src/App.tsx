@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -18,6 +18,8 @@ import { getProjectBySlug } from './data/projects'
 import { getTechnologyBySlug } from './data/technologies'
 import { getExperienceById } from './data/experiences'
 import { getKnowledgeBySlug } from './data/knowledge'
+import MasterclassShell from './masterclass-engine/MasterclassShell'
+import { resolveMasterclassHash } from './masterclass-engine/MasterclassRouter'
 
 function resolveAvinashHash(hash: string) {
   return hash === '#avinash'
@@ -85,11 +87,12 @@ function resolveProjectHash(hash: string) {
 }
 
 type AppState = {
-  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'projects' | 'technology-universe' | 'avinash'
+  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'projects' | 'technology-universe' | 'avinash' | 'masterclass'
   technology: NonNullable<ReturnType<typeof getTechnologyBySlug>> | null
   experience: NonNullable<ReturnType<typeof getExperienceById>> | null
   project: NonNullable<ReturnType<typeof getProjectBySlug>> | null
   knowledge: NonNullable<ReturnType<typeof getKnowledgeBySlug>> | null
+  masterclass: NonNullable<ReturnType<typeof resolveMasterclassHash>> | null
   advancedSlug: string | null
 }
 
@@ -100,11 +103,26 @@ function createHomeState(): AppState {
     experience: null,
     project: null,
     knowledge: null,
+    masterclass: null,
     advancedSlug: null,
   }
 }
 
 function resolveAppState(hash: string): AppState {
+  const masterclass = resolveMasterclassHash(hash)
+
+  if (masterclass) {
+    return {
+      kind: 'masterclass',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+      masterclass,
+      advancedSlug: null,
+    }
+  }
+
   if (resolveAvinashHash(hash)) {
     return {
       kind: 'avinash',
@@ -112,6 +130,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -123,6 +142,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -133,6 +153,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -150,6 +171,7 @@ function resolveAppState(hash: string): AppState {
       experience,
       project: null,
       knowledge: null,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -163,6 +185,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge: null,
+      masterclass: null,
       advancedSlug: advanced,
     }
   }
@@ -176,6 +199,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project: null,
       knowledge,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -189,6 +213,7 @@ function resolveAppState(hash: string): AppState {
       experience: null,
       project,
       knowledge: null,
+      masterclass: null,
       advancedSlug: null,
     }
   }
@@ -212,6 +237,19 @@ function App() {
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
+  if (state.kind === 'masterclass' && state.masterclass) {
+    return (
+      <>
+        <Navbar />
+        <main id="masterclass">
+          <MasterclassShell
+            masterclass={state.masterclass}
+          />
+        </main>
+      </>
+    )
+  }
+
   if (state.kind === 'avinash') {
     return (
       <>
@@ -319,4 +357,14 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
 
