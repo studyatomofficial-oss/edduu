@@ -19,7 +19,12 @@ import { getTechnologyBySlug } from './data/technologies'
 import { getExperienceById } from './data/experiences'
 import { getKnowledgeBySlug } from './data/knowledge'
 import MasterclassShell from './masterclass-engine/MasterclassShell'
-import { resolveMasterclassHash } from './masterclass-engine/MasterclassRouter'
+import GuidePage from './masterclass-engine/GuidePage'
+import {
+  resolveMasterclassHash,
+  resolveGuideHash,
+} from './masterclass-engine/MasterclassRouter'
+import type { GuideDefinition } from './masterclass-engine/types'
 
 function resolveAvinashHash(hash: string) {
   return hash === '#avinash'
@@ -87,12 +92,13 @@ function resolveProjectHash(hash: string) {
 }
 
 type AppState = {
-  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'projects' | 'technology-universe' | 'avinash' | 'masterclass'
+  kind: 'home' | 'lab' | 'coming-soon' | 'advanced' | 'knowledge' | 'project' | 'projects' | 'technology-universe' | 'avinash' | 'masterclass' | 'guide'
   technology: NonNullable<ReturnType<typeof getTechnologyBySlug>> | null
   experience: NonNullable<ReturnType<typeof getExperienceById>> | null
   project: NonNullable<ReturnType<typeof getProjectBySlug>> | null
   knowledge: NonNullable<ReturnType<typeof getKnowledgeBySlug>> | null
   masterclass: NonNullable<ReturnType<typeof resolveMasterclassHash>> | null
+  guide: GuideDefinition | null
   advancedSlug: string | null
 }
 
@@ -104,11 +110,27 @@ function createHomeState(): AppState {
     project: null,
     knowledge: null,
     masterclass: null,
+    guide: null,
     advancedSlug: null,
   }
 }
 
 function resolveAppState(hash: string): AppState {
+  const resolvedGuide = resolveGuideHash(hash)
+
+  if (resolvedGuide) {
+    return {
+      kind: 'guide',
+      technology: null,
+      experience: null,
+      project: null,
+      knowledge: null,
+      masterclass: resolvedGuide.masterclass,
+      guide: resolvedGuide.guide,
+      advancedSlug: null,
+    }
+  }
+
   const masterclass = resolveMasterclassHash(hash)
 
   if (masterclass) {
@@ -119,6 +141,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -131,6 +154,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -143,6 +167,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -154,6 +179,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -172,6 +198,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -186,6 +213,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: advanced,
     }
   }
@@ -200,6 +228,7 @@ function resolveAppState(hash: string): AppState {
       project: null,
       knowledge,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -214,6 +243,7 @@ function resolveAppState(hash: string): AppState {
       project,
       knowledge: null,
       masterclass: null,
+      guide: null,
       advancedSlug: null,
     }
   }
@@ -237,6 +267,24 @@ function App() {
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
+  if (
+    state.kind === 'guide' &&
+    state.masterclass &&
+    state.guide
+  ) {
+    return (
+      <>
+        <Navbar />
+        <main id="guide">
+          <GuidePage
+            masterclass={state.masterclass}
+            guide={state.guide}
+          />
+        </main>
+      </>
+    )
+  }
+
   if (state.kind === 'masterclass' && state.masterclass) {
     return (
       <>
@@ -357,6 +405,13 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+
 
 
 

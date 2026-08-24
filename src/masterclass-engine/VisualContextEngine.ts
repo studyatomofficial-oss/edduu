@@ -18,6 +18,202 @@ type VisualSignature = {
 
 const VISUAL_SIGNATURES: VisualSignature[] = [
   {
+    visual: 'programming',
+    priority: 88,
+    required: ['program'],
+    supporting: [
+      'code',
+      'variable',
+      'function',
+      'loop',
+      'condition',
+      'algorithm',
+      'instruction',
+      'execute',
+      'output',
+    ],
+  },
+
+  {
+    visual: 'database',
+    priority: 88,
+    required: ['database'],
+    supporting: [
+      'table',
+      'row',
+      'column',
+      'record',
+      'query',
+      'sql',
+      'storage',
+      'retrieve',
+      'insert',
+      'update',
+    ],
+  },
+
+  {
+    visual: 'api',
+    priority: 88,
+    required: ['api'],
+    supporting: [
+      'endpoint',
+      'http',
+      'request',
+      'response',
+      'json',
+      'client',
+      'backend',
+      'route',
+      'service',
+    ],
+  },
+
+  {
+    visual: 'architecture',
+    priority: 86,
+    required: ['architecture'],
+    supporting: [
+      'component',
+      'service',
+      'frontend',
+      'backend',
+      'load balancer',
+      'system',
+      'application',
+      'layer',
+      'design',
+    ],
+  },
+
+  {
+    visual: 'cloud',
+    priority: 86,
+    required: ['cloud'],
+    supporting: [
+      'server',
+      'compute',
+      'storage',
+      'region',
+      'availability',
+      'deployment',
+      'infrastructure',
+    ],
+  },
+
+  {
+    visual: 'distributed',
+    priority: 86,
+    required: ['distributed'],
+    supporting: [
+      'service',
+      'node',
+      'replica',
+      'partition',
+      'message',
+      'network',
+      'cluster',
+      'failure',
+    ],
+  },
+
+  {
+    visual: 'security',
+    priority: 86,
+    required: ['security'],
+    supporting: [
+      'authentication',
+      'authorization',
+      'identity',
+      'token',
+      'permission',
+      'encryption',
+      'trust',
+      'access',
+    ],
+  },
+
+  {
+    visual: 'machine-learning',
+    priority: 90,
+    required: ['machine learning'],
+    supporting: [
+      'dataset',
+      'feature',
+      'training',
+      'model',
+      'prediction',
+      'inference',
+      'label',
+      'evaluation',
+    ],
+  },
+
+  {
+    visual: 'llm',
+    priority: 92,
+    required: ['language model'],
+    supporting: [
+      'llm',
+      'prompt',
+      'token',
+      'generation',
+      'transformer',
+      'context',
+      'completion',
+      'model',
+    ],
+  },
+
+  {
+    visual: 'rag',
+    priority: 94,
+    required: ['retrieval'],
+    supporting: [
+      'embedding',
+      'vector',
+      'knowledge',
+      'context',
+      'document',
+      'search',
+      'chunk',
+      'language model',
+    ],
+  },
+
+  {
+    visual: 'agent',
+    priority: 94,
+    required: ['agent'],
+    supporting: [
+      'goal',
+      'reasoning',
+      'tool',
+      'observation',
+      'action',
+      'planning',
+      'workflow',
+      'decision',
+    ],
+  },
+
+  {
+    visual: 'production-ai',
+    priority: 96,
+    required: ['production ai'],
+    supporting: [
+      'deployment',
+      'monitoring',
+      'reliability',
+      'latency',
+      'cost',
+      'evaluation',
+      'observability',
+      'model',
+    ],
+  },
+
+  {
     visual: 'browser-render',
     priority: 95,
     required: [
@@ -150,6 +346,70 @@ const VISUAL_SIGNATURES: VisualSignature[] = [
       'filename',
       'document',
       'save',
+    ],
+  },
+
+  {
+    visual: 'html-structure',
+    priority: 96,
+    required: ['html'],
+    supporting: [
+      'document',
+      'structure',
+      'element',
+      'heading',
+      'paragraph',
+      'link',
+      'page',
+      'browser',
+    ],
+  },
+
+  {
+    visual: 'css-presentation',
+    priority: 96,
+    required: ['css'],
+    supporting: [
+      'presentation',
+      'style',
+      'spacing',
+      'font',
+      'layout',
+      'sizing',
+      'appearance',
+      'html',
+    ],
+  },
+
+  {
+    visual: 'javascript-interaction',
+    priority: 96,
+    required: ['javascript'],
+    supporting: [
+      'event',
+      'click',
+      'dom',
+      'interaction',
+      'handler',
+      'logic',
+      'browser',
+      'change',
+    ],
+  },
+
+  {
+    visual: 'frontend-components',
+    priority: 96,
+    required: ['frontend'],
+    supporting: [
+      'component',
+      'react',
+      'state',
+      'interface',
+      'application',
+      'reusable',
+      'browser',
+      'ui',
     ],
   },
 
@@ -367,7 +627,7 @@ export function resolveAnimationVisual(
 
   const selectedVisual =
     candidates[0]?.visual ??
-    'computer'
+    'concept-flow'
 
   console.log(
     '[EDDUU VISUAL DEBUG]',
@@ -381,3 +641,7 @@ export function resolveAnimationVisual(
 
   return selectedVisual
 }
+
+
+
+

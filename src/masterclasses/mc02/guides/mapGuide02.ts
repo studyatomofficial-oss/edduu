@@ -1,0 +1,121 @@
+import type { GuideDefinition } from '../../../masterclass-engine/types'
+
+export const mapGuide02: GuideDefinition = {
+  type: 'map',
+  label: 'MAP GUIDE 02',
+  title: 'Build a Modern Web Application - Implementation Map',
+  objective:
+    'Follow the complete path from HTML structure to a modern web application with frontend, API, backend, database and production delivery layers.',
+  steps: [
+    {
+      id: 'mc02-map-01',
+      step: 1,
+      title: 'Build the page structure',
+      action: 'Create the basic structure of a web page using HTML.',
+      details: [
+        'Represent headings, paragraphs, links and buttons as page elements.',
+        'Think about what exists on the page before thinking about how it looks.',
+        'The browser interprets the HTML document and builds the page structure.',
+      ],
+      mapStepId: 'mc02-session-01',
+    },
+    {
+      id: 'mc02-map-02',
+      step: 2,
+      title: 'Add presentation',
+      action: 'Use CSS to control the appearance and layout of the HTML structure.',
+      details: [
+        'Control fonts, spacing and sizing.',
+        'Organize elements using CSS layout rules.',
+        'Keep structure and presentation as separate responsibilities.',
+      ],
+      mapStepId: 'mc02-session-02',
+    },
+    {
+      id: 'mc02-map-03',
+      step: 3,
+      title: 'Add browser behaviour',
+      action: 'Use JavaScript to respond to browser events and change the page.',
+      details: [
+        'Listen for user actions such as button clicks.',
+        'Run JavaScript logic when an event occurs.',
+        'Use the DOM to inspect or change the document.',
+      ],
+      mapStepId: 'mc02-session-03',
+    },
+    {
+      id: 'mc02-map-04',
+      step: 4,
+      title: 'Organize the frontend',
+      action: 'Move from a simple page toward a component-based frontend application.',
+      details: [
+        'Divide the interface into reusable components.',
+        'Use React to compose the interface.',
+        'Use TypeScript to define expected data types.',
+        'Use Vite as part of the modern frontend development workflow.',
+        'Use state for information that can change while the application runs.',
+      ],
+      mapStepId: 'mc02-session-04',
+    },
+    {
+      id: 'mc02-map-05',
+      step: 5,
+      title: 'Connect frontend and backend',
+      action: 'Create a communication boundary between the browser application and server-side systems.',
+      details: [
+        'Treat the frontend as a client.',
+        'Use an API as the communication boundary.',
+        'Use HTTP requests and responses.',
+        'Use JSON for structured data exchange.',
+        'Keep database access behind backend services.',
+      ],
+      mapStepId: 'mc02-session-05',
+    },
+    {
+      id: 'mc02-map-06',
+      step: 6,
+      title: 'Handle state and communication patterns',
+      action: 'Choose the right mechanism for application context and communication.',
+      details: [
+        'Use application state for changing information.',
+        'Understand the role of cookies and sessions.',
+        'Use authentication to establish identity.',
+        'Use WebSockets for ongoing two-way communication.',
+        'Use webhooks for event-driven notifications between systems.',
+      ],
+      mapStepId: 'mc02-session-06',
+    },
+    {
+      id: 'mc02-map-07',
+      step: 7,
+      title: 'Prepare for production delivery',
+      action: 'Understand how modern web architecture distributes delivery, routing, rendering and application responsibilities.',
+      details: [
+        'Separate static and dynamic content.',
+        'Use CDNs to deliver suitable cached content closer to users.',
+        'Use reverse proxies to route incoming traffic.',
+        'Understand client-side rendering.',
+        'Understand server-side rendering.',
+        'Distribute responsibility across architecture layers.',
+      ],
+      mapStepId: 'mc02-session-07',
+    },
+    {
+      id: 'mc02-map-08',
+      step: 8,
+      title: 'Connect the complete application',
+      action: 'Combine browser, frontend, API, backend and database into one complete application journey.',
+      details: [
+        'The browser hosts the user-facing frontend.',
+        'The frontend communicates through the API.',
+        'The backend applies business logic.',
+        'The backend reads or writes persistent data.',
+        'The response returns through the application boundary.',
+        'The browser processes the result and presents the updated experience.',
+      ],
+      mapStepId: 'mc02-session-08',
+    },
+  ],
+  finalResult:
+    'You can now trace a modern web application from the browser through frontend, API, backend and database layers, and understand how infrastructure layers support delivery at scale.',
+}

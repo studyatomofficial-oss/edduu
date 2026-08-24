@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type {
   AnimationDefinition,
 } from './types'
+import ConceptFlowRenderer from './ConceptFlowRenderer'
 import {
   resolveAnimationVisual,
 } from './VisualContextEngine'
@@ -394,6 +395,29 @@ function AnimationRenderer({
 
         </div>
 
+        ) : [
+          'programming',
+          'database',
+          'api',
+          'architecture',
+          'cloud',
+          'distributed',
+          'security',
+          'machine-learning',
+          'llm',
+          'rag',
+          'agent',
+          'production-ai',
+          'html-structure',
+          'css-presentation',
+          'javascript-interaction',
+          'frontend-components',
+          'concept-flow',
+        ].includes(resolvedVisual) ? (
+          <ConceptFlowRenderer
+            animation={animation}
+            visual={resolvedVisual}
+          />
       ) : resolvedVisual === 'capstone' ? (
 
         <div className="edduu-capstone-visual">
@@ -541,3 +565,7 @@ function AnimationRenderer({
 }
 
 export default AnimationRenderer
+
+
+
+

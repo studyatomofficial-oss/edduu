@@ -98,13 +98,38 @@ export type AnimationPart = {
   example?: string
 }
 
-export type AnimationVisual = 'computer' | 'storage' | 'process' | 'network' | 'internet' | 'web' | 'capstone' | 'browser-render'
+export type AnimationVisual = 'computer' | 'storage' | 'process' | 'network' | 'internet' | 'web' | 'capstone' | 'browser-render' | 'programming' | 'database' | 'api' | 'architecture' | 'cloud' | 'distributed' | 'security' | 'machine-learning' | 'llm' | 'rag' | 'agent' | 'production-ai' | 'html-structure' | 'css-presentation' | 'javascript-interaction' | 'frontend-components' | 'concept-flow'
 
 export type AnimationDefinition = {
   visual?: AnimationVisual
   opening?: string
   parts: AnimationPart[]
   closing?: string
+}
+export type GuideType =
+  | 'map'
+  | 'code'
+
+export type GuideStep = {
+  id: string
+  step: number
+  title: string
+  action: string
+  details?: string[]
+  url?: string
+  command?: string
+  code?: string
+  explanation?: string
+  mapStepId?: string
+}
+
+export type GuideDefinition = {
+  type: GuideType
+  label: string
+  title: string
+  objective: string
+  steps: GuideStep[]
+  finalResult?: string
 }
 export type ExperienceDefinition = {
   id: string
@@ -135,7 +160,13 @@ export type MasterclassDefinition = {
   subtitle: string
   objective: string
   sessions: SessionDefinition[]
+  guides?: GuideDefinition[]
 }
+
+
+
+
+
 
 
 

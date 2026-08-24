@@ -5,6 +5,9 @@ import type {
 } from './types'
 import { randomizeQuestion } from './QuestionEngine'
 import ExperienceRenderer from './ExperienceRenderer'
+import GuideActions from './GuideActions'
+
+import { prepareSessionExperiences } from './ExperiencePlanEngine'
 import {
   createExperienceProgress,
   completeExperience,
@@ -24,6 +27,19 @@ type MasterclassShellProps = {
 function MasterclassShell({
   masterclass,
 }: MasterclassShellProps) {
+  const preparedSessions = useMemo(
+    () =>
+      masterclass.sessions.map((session) => ({
+        ...session,
+        experiences:
+          prepareSessionExperiences(
+            session.experiences,
+            masterclass.number,
+          ),
+      })),
+    [masterclass],
+  )
+
   const [currentSessionIndex, setCurrentSessionIndex] =
     useState(0)
 
@@ -33,7 +49,7 @@ function MasterclassShell({
   const [experienceProgress, setExperienceProgress] =
     useState<ExperienceProgressState>(() =>
       createExperienceProgress(
-        masterclass.sessions[0]?.experiences ?? [],
+        preparedSessions[0]?.experiences ?? [],
       ),
     )
 
@@ -46,8 +62,9 @@ function MasterclassShell({
   const [masterclassComplete, setMasterclassComplete] =
     useState(false)
 
+
   const session: SessionDefinition | undefined =
-    masterclass.sessions[currentSessionIndex]
+    preparedSessions[currentSessionIndex]
 
   const activeExperience =
     getCurrentExperience(
@@ -135,7 +152,7 @@ function MasterclassShell({
 
     if (currentSessionIndex > 0) {
       const previousSessionIndex = currentSessionIndex - 1
-      const previousSession = masterclass.sessions[previousSessionIndex]
+      const previousSession = preparedSessions[previousSessionIndex]
 
       setCurrentSessionIndex(previousSessionIndex)
       setExperienceProgress({
@@ -190,12 +207,17 @@ function MasterclassShell({
           <p className="edduu-section-description">
             {masterclass.subtitle}
           </p>
+
+          <GuideActions
+            guides={masterclass.guides ?? []}
+            masterclassSlug={masterclass.slug}
+          />
         </header>
 
         <button type="button" className="edduu-masterclass-back" onClick={handleBack}>Back</button>
 
         <div className="edduu-masterclass-progress">
-          SESSION {session.number} / {masterclass.sessions.length}
+          SESSION {session.number} / {preparedSessions.length}
         </div>
 
         <article className="edduu-masterclass-session">
@@ -269,7 +291,7 @@ function MasterclassShell({
                 if (
                   sessionComplete &&
                   currentSessionIndex <
-                    masterclass.sessions.length - 1
+                    preparedSessions.length - 1
                 ) {
                   const nextSessionIndex =
                     currentSessionIndex + 1
@@ -280,9 +302,7 @@ function MasterclassShell({
 
                   setExperienceProgress(
                     createExperienceProgress(
-                      masterclass.sessions[
-                        nextSessionIndex
-                      ]?.experiences ?? [],
+                      preparedSessions[nextSessionIndex]?.experiences ?? [],
                     ),
                   )
 
@@ -305,12 +325,26 @@ function MasterclassShell({
 
         </article>
 
+
       </div>
     </section>
   )
 }
 
 export default MasterclassShell
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
