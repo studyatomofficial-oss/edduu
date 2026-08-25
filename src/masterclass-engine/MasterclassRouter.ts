@@ -3,6 +3,7 @@ import { mc02 } from '../masterclasses/mc02/definition'
 import { mc03 } from '../masterclasses/mc03/definition'
 import { mc04 } from '../masterclasses/mc04/definition'
 import { mc05 } from '../masterclasses/mc05/definition'
+import { mc06 } from '../masterclasses/mc06/definition'
 
 export function resolveMasterclassHash(hash: string) {
   const match = /^#masterclass\/(.+)$/.exec(hash)
@@ -25,6 +26,9 @@ export function resolveMasterclassHash(hash: string) {
     return mc04
   }  if (match[1] === mc05.slug) {
     return mc05
+  }
+  if (match[1] === mc06.slug) {
+    return mc06
   }
 
   return null
