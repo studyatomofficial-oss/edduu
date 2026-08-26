@@ -5,6 +5,7 @@ import { mc04 } from '../masterclasses/mc04/definition'
 import { mc05 } from '../masterclasses/mc05/definition'
 import { mc06 } from '../masterclasses/mc06/definition'
 import { mc07 } from '../masterclasses/mc07/definition'
+import { mc09 } from '../masterclasses/mc09/definition'
 import { mc08 } from '../masterclasses/mc08/definition'
 
 export function resolveMasterclassHash(hash: string) {
@@ -34,6 +35,10 @@ export function resolveMasterclassHash(hash: string) {
   }
   if (match[1] === mc07.slug) {
     return mc07
+  }
+
+  if (match[1] === mc09.slug) {
+    return mc09
   }
   if (match[1] === mc08.slug) {
     return mc08
