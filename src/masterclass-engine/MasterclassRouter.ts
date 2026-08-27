@@ -1,4 +1,4 @@
-﻿import { mc01 } from '../masterclasses/mc01/definition'
+import { mc01 } from '../masterclasses/mc01/definition'
 import { mc02 } from '../masterclasses/mc02/definition'
 import { mc03 } from '../masterclasses/mc03/definition'
 import { mc04 } from '../masterclasses/mc04/definition'
@@ -8,6 +8,7 @@ import { mc07 } from '../masterclasses/mc07/definition'
 import { mc09 } from '../masterclasses/mc09/definition'
 import { mc10 } from '../masterclasses/mc10/definition'
 import { mc11 } from '../masterclasses/mc11/definition'
+import { mc12 } from '../masterclasses/mc12/definition'
 import { mc08 } from '../masterclasses/mc08/definition'
 
 export function resolveMasterclassHash(hash: string) {
@@ -49,6 +50,9 @@ export function resolveMasterclassHash(hash: string) {
 
   if (match[1] === mc11.slug) {
     return mc11
+  }
+  if (match[1] === mc12.slug) {
+    return mc12
   }
   if (match[1] === mc08.slug) {
     return mc08
